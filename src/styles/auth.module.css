@@ -1,0 +1,104 @@
+/* 공통 스타일 */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 350px;
+  margin: auto;
+}
+
+.formContainer {
+  background-color: #fff;
+  border: 1px solid #dbdbdb;
+  padding: 40px;
+  width: 350px;
+  text-align: center;
+  border-radius: .5rem;
+}
+
+.heading {
+  font-family: 'Instagram', sans-serif;
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.textMuted {
+  color: #8e8e8e;
+  border-bottom-style: none;
+}
+
+.mt10 {
+  margin-top: 10px;
+}
+
+.mt20 {
+  margin-top: 20px;
+}
+
+.mb10 {
+  margin-bottom: 10px;
+}
+
+.mb20 {
+  margin-bottom: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.bgBlue {
+  background-color: #0866ff;
+  color: white;
+}
+
+.bgWhite {
+  background-color: white;
+  color: #0866ff;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #dbdbdb;
+  border-radius: 5px;
+  background-color: #fafafa;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.link {
+  color: #0095f6;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.orSeparator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+  font-size: 13px;
+}
+
+.orSeparator .line {
+  flex: 1;
+  height: 1px;
+  background-color: #dbdbdb;
+  margin: 0 10px;
+}
+

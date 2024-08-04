@@ -1,0 +1,22 @@
+.timeline {
+  display: flex;
+  flex-direction: row;
+}
+
+.timeline__left {
+  display: flex;
+  justify-content: center; /* 수평 중앙 정렬 */
+  align-items: flex-start; /* 수직 시작 정렬 (상단 정렬) */
+  flex: 0.7;
+}
+
+.timeline__right {
+  flex: 0.3;
+}
+
+.timeline__posts {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 자식 요소들을 수평 중앙 정렬 */
+  width: 100%; /* 필요에 따라 조정 */
+}

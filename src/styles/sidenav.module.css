@@ -1,0 +1,64 @@
+/* 폰트 */
+/* @font-face {
+  font-family: "NanumSquare-Regular";
+  font-weight: normal;
+  src: url("../fonts/NanumSquareR.ttf") format("truetype");
+} */
+
+.sidenav {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+.sidenav__logo {
+  width: 100px;
+  margin: 30px 20px;
+}
+
+.sidenav__buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidenav__button {
+  font-family: "NanumSquare-Regular";
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: black;
+  background: none;
+  border: none;
+  margin: 5px 5px;
+  padding: 10px 10px;
+  border-radius: 15px;
+  width: 100%;
+  transition: font-weight 0.3s ease; /* 글씨의 굵기 변화를 위한 트랜지션 */
+}
+
+.sidenav__button .MuiSvgIcon-root {
+  font-size: 1.7rem; /* 원하는 크기로 설정 */
+  transition: transform 0.3s ease; /* 아이콘 크기 변화를 위한 트랜지션 */
+}
+
+.sidenav__button:hover {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.sidenav__button:hover .MuiSvgIcon-root {
+  transform: scale(1.03); /* 아이콘을 10%만큼 키움 */
+}
+
+.sidenav__button > span {
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+.sidenav__more {
+  position: fixed;
+  bottom: 15px;
+}
