@@ -1,0 +1,9 @@
+.container {
+  position: absolute; /* 또는 fixed */
+  top: 0;
+  left: 100;
+  width: 400px;
+  height: 100%;
+  background-color: yellow; /* 노란색으로 표시 */
+  z-index: 1000; /* `Timeline` 위에 오도록 z-index 조정 */
+}

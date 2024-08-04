@@ -4,7 +4,7 @@ import styles from '../styles/timeline.module.css'
 import Post from "../components/post";
 
 function Timeline() {
-  const [posts, setPosts] = useState([
+  const [posts] = useState([
     {
       user: "userid",
       postImage:

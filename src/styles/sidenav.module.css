@@ -11,13 +11,25 @@
   flex-direction: column;
   justify-content: space-between;
   z-index: 1;
+  transition: all 0.3s ease;
 }
 
-.sidenav__logo {
+/* 기본 로고 이미지 설정 */
+.sidenav__logo img {
   width: 100px;
+  display: block;
   margin: 30px 20px;
+  padding: 10px 10px;
 }
 
+/* 기본 아이콘 설정 - 기본적으로 숨김 */
+.sidenav__logo .icon {
+  display: none;
+  margin: 40px 5px;
+  padding: 0 10px;
+}
+
+/* 기본 레이아웃 - 전체 화면 */
 .sidenav__buttons {
   display: flex;
   flex-direction: column;
@@ -26,7 +38,7 @@
 .sidenav__button {
   font-family: "NanumSquare-Regular";
   display: flex;
-  flex-direction: row;
+  flex-direction: row;  
   align-items: center;
   color: black;
   background: none;
@@ -34,7 +46,7 @@
   margin: 5px 5px;
   padding: 10px 10px;
   border-radius: 15px;
-  width: 100%;
+  /* width: 100%; */
   transition: font-weight 0.3s ease; /* 글씨의 굵기 변화를 위한 트랜지션 */
 }
 
@@ -56,9 +68,46 @@
 .sidenav__button > span {
   font-size: 18px;
   margin-left: 10px;
+  display: inline;
 }
+
+/* 선택된 상태의 nav 스타일 */
+.selected .sidenav__logo img {
+  display: none;
+}
+
+.selected .sidenav__logo .icon {
+  display: block;
+  margin: 40px 5px;
+  padding: 0 10px;
+}
+
+.selected .sidenav__button span {
+  display: none;
+}
+
 
 .sidenav__more {
   position: fixed;
   bottom: 15px;
+}
+
+/* 작은 화면일 때의 레이아웃 */
+@media (max-width: 1264px) {
+  .sidenav__logo img {
+    display: none; /* 작은 화면에서는 이미지 숨김 */
+  }
+
+  .sidenav__logo .icon {
+    display: block; /* 작은 화면에서는 아이콘 표시 */
+    font-size: 1.7rem; /* 원하는 크기로 설정 */
+  }
+
+  .sidenav__buttons {
+    flex-direction: column;
+  }
+
+  .sidenav__button span {
+    display: none; /* 텍스트 숨기기 */
+  }
 }

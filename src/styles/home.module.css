@@ -4,7 +4,7 @@
 }
 
 .homepage__nav {
-  flex: 0.2;
+  /* flex: 0.2; */
   border-right: 1px solid #d3d3d3;
 }
 
