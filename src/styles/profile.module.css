@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.profile_img {
+  display: inline-flex;
+  align-items: center;
+}
+
+.user_info {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.about {
+  color: grey;
+  font-size: 12px;
+}
+
+.follow {
+  color: #0095f6;
+  font-weight: bold;
+  background: 0;
+  border: 0;
+}
+
+.follow:hover {
+  color: #1d3c78;
+  cursor: pointer;
+}
+
+.username {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.avatar {
+  margin-right: 10px;
+}

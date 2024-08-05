@@ -9,30 +9,34 @@ import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 
 function Post(props) {
   return (
-    <div className={styles.post}>
-      <div className={styles.post__header}>
-        <div className={styles.post__headerAuthor}>
+    <div className={`${styles.post} ${styles.mt20}`}>
+      {/* 프로필 */}
+      <div className={styles.profile_container}>
+        <div className={styles.profile}>
           <Avatar>{props.user.charAt(0).toUpperCase()}</Avatar>&nbsp;&nbsp;
-          {props.user} • <span>{props.timestamp}</span>
+          {props.user}
+          <span className={styles.textMuted}>&nbsp;•&nbsp;{props.timestamp}</span>
         </div>
         <MoreHorizIcon />
       </div>
-      <div className={styles.post__image}>
+
+      {/* 이미지 */}
+      <div className={styles.post_image}>
         <img src={props.postImage} alt="" />
       </div>
-      <div className={styles.post__footer}>
-        <div className={styles.post__footerIcons}>
-          <div className={styles.post__iconsMain}>
-            <FavoriteBorder className={styles.postIcon} />
-            <ChatBubbleOutlineIcon className={styles.postIcon} />
-            <TelegramIcon className={styles.postIcon} />
-          </div>
-          <div className={styles.post__iconSave}>
-            <BookmarkBorderIcon className={styles.postIcon} />
-          </div>
+
+      {/* items */}
+      <div className={styles.icons_container}>
+        <div className={styles.icons}>
+          <FavoriteBorder className={styles.postIcon} />
+          <ChatBubbleOutlineIcon className={styles.postIcon} />
+          <TelegramIcon className={styles.postIcon} />
         </div>
-        <span className={styles.post__likes}>좋아요 {props.likes}개</span>
+        <div className={styles.post_iconSave}>
+          <BookmarkBorderIcon className={styles.postIcon} />
+        </div>
       </div>
+      <span className={styles.post_likes}>좋아요 {props.likes}개</span>
     </div>
   );
 }

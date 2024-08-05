@@ -5,37 +5,46 @@
   src: url("../fonts/NanumSquareR.ttf") format("truetype");
 } */
 
-.sidenav {
-  position: fixed;
-  display: flex;
+.nav_design {
   flex-direction: column;
-  justify-content: space-between;
-  z-index: 1;
+  border-right: 1px solid #d3d3d3;
   transition: all 0.3s ease;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  background-color: white;
+}
+
+.sidenav {
+  width: 244px;
 }
 
 /* 기본 로고 이미지 설정 */
-.sidenav__logo img {
-  width: 100px;
+.logo_container {
   display: block;
   margin: 30px 20px;
-  padding: 10px 10px;
+  text-align: left;
+}
+
+.logo_container img {
+  width: 60%;
 }
 
 /* 기본 아이콘 설정 - 기본적으로 숨김 */
-.sidenav__logo .icon {
+.logo_container .icon {
   display: none;
-  margin: 40px 5px;
-  padding: 0 10px;
 }
 
 /* 기본 레이아웃 - 전체 화면 */
-.sidenav__buttons {
-  display: flex;
-  flex-direction: column;
+.sidenav_buttons {
+  position: absolute;
+  top: 100px;
+  transition: all 0.3s ease;
+  width: inherit;
 }
 
-.sidenav__button {
+.sidenav_button {
   font-family: "NanumSquare-Regular";
   display: flex;
   flex-direction: row;  
@@ -43,71 +52,74 @@
   color: black;
   background: none;
   border: none;
-  margin: 5px 5px;
-  padding: 10px 10px;
-  border-radius: 15px;
-  /* width: 100%; */
-  transition: font-weight 0.3s ease; /* 글씨의 굵기 변화를 위한 트랜지션 */
+  margin: 4px 0;
+  padding: 12px 20px;
+  width: 100%;
 }
 
-.sidenav__button .MuiSvgIcon-root {
-  font-size: 1.7rem; /* 원하는 크기로 설정 */
-  transition: transform 0.3s ease; /* 아이콘 크기 변화를 위한 트랜지션 */
+.sidenav_button {
+  font-size: 2rem;
+  transition: transform 0.3s ease; 
 }
 
-.sidenav__button:hover {
+.sidenav_button:hover {
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  /* transition: background-color 0.3s ease; */
   background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
 }
 
-.sidenav__button:hover .MuiSvgIcon-root {
-  transform: scale(1.03); /* 아이콘을 10%만큼 키움 */
-}
-
-.sidenav__button > span {
-  font-size: 18px;
-  margin-left: 10px;
-  display: inline;
+.sidenav_button > span {
+  font-size: 1.2rem;
+  margin-left: 16px;
+  white-space: nowrap; 
+  display: inline-block;
+  overflow: hidden; 
 }
 
 /* 선택된 상태의 nav 스타일 */
-.selected .sidenav__logo img {
+.selected {
+  width: 72px;
+}
+
+.selected .logo_container img {
   display: none;
 }
 
-.selected .sidenav__logo .icon {
-  display: block;
-  margin: 40px 5px;
-  padding: 0 10px;
+.selected .logo_container .icon {
+  display: block; 
+  font-size: 1.7rem;
 }
 
-.selected .sidenav__button span {
+.selected .sidenav_button span {
   display: none;
 }
 
-
-.sidenav__more {
+.sidenav_more {
   position: fixed;
-  bottom: 15px;
+  bottom: 0 ;
 }
 
 /* 작은 화면일 때의 레이아웃 */
 @media (max-width: 1264px) {
-  .sidenav__logo img {
+  .sidenav {
+    width: 72px;
+  }
+
+  .logo_container img {
     display: none; /* 작은 화면에서는 이미지 숨김 */
   }
 
-  .sidenav__logo .icon {
+  .logo_container .icon {
     display: block; /* 작은 화면에서는 아이콘 표시 */
     font-size: 1.7rem; /* 원하는 크기로 설정 */
   }
 
-  .sidenav__buttons {
+  .sidenav_buttons {
     flex-direction: column;
   }
 
-  .sidenav__button span {
+  .sidenav_button span {
     display: none; /* 텍스트 숨기기 */
   }
 }
