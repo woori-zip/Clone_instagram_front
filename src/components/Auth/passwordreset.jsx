@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "../../styles/auth.module.css";
+import { Link } from "react-router-dom";
 
 function PasswordReset() {
   return (
@@ -30,8 +31,12 @@ function PasswordReset() {
           <span>또는</span>
           <div className={styles.line}></div>
         </div>
-        <p>새 계정 만들기</p>
-        <button>로그인으로 돌아가기</button>
+        <Link to="/accounts/emailsignup" className={styles.link}>
+          <p>새 계정 만들기</p>
+        </Link>
+        <Link to="/accounts/login" className={styles.link}>
+          <p>로그인으로 돌아가기</p>
+        </Link>
       </div>
     </div>
   );
