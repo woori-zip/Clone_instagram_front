@@ -13,10 +13,10 @@ function Suggestions() {
     <div className={styles.suggestions}>
       <Profile name={loggedInUser.name} profile={loggedInUser.profile}/>
       <div className={styles.text_container}>
-        <span className={`${styles.textG} ${styles.textB} ${styles.text14}`}>
+        <span className={`${styles.textGrey} ${styles.textBold} ${styles.text14}`}>
           회원님을 위한 추천
         </span>
-        <span className={`${styles.textB} ${styles.text12}`}>
+        <span className={`${styles.textBold} ${styles.text12}`}>
           모두 보기
         </span>
       </div>

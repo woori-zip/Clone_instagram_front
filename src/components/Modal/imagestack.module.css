@@ -1,0 +1,54 @@
+.imagePreviewContainer {
+  position: absolute;
+  bottom: 100px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.imagePreviewSlider {
+  display: flex;
+  gap: 10px;
+}
+
+.thumbnailContainer {
+  position: relative;
+  width: 90px;
+  height:90px;
+}
+
+.thumbnail {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 5px;
+  cursor: pointer;
+  filter: brightness(50%)
+}
+
+.selectedThumbnail {
+  filter: brightness(100%);
+  opacity: 100;
+}
+
+.removeButton {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.iconLabel {
+  color: white;
+}

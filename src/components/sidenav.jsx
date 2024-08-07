@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import styles from "../styles/sidenav.module.css"
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import SearchIcon from "@mui/icons-material/Search";
@@ -10,13 +10,40 @@ import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
 import InstagramIcon from '@mui/icons-material/Instagram';
 import Search from "../components/search";
+import UploadModal from "./Modal/uploadModal";
 // import Alert from "../components/alert"; // <Alert /> 컴포넌트 추가
 
 function Sidenav() {
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const isModalOpen = selectedCategory === "add";
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.cssText = `
+        position: fixed; 
+        top: -${window.scrollY}px;
+        overflow-y: scroll;
+        width: 100%;`;
+    }
+
+    return () => {
+      if (isModalOpen) {
+        const scrollY = document.body.style.top;
+        document.body.style.cssText = '';
+        window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
+      }
+    };
+  }, [isModalOpen]);
 
   return (
       <>
+      {/* 컴포넌트 출력 */}
+      <div>
+        {selectedCategory === "search" && <Search />}
+        {/* {selectedCategory === "alert" && <Alert />} */}
+        {selectedCategory === "add" && <UploadModal />}
+      </div>
+
       {/* 사이드 네비게이션 */}
         <div className={`${styles.nav_design} ${selectedCategory ? styles['selected'] : styles['sidenav']}`}>
           {/* 인스타그램 로고 */}
@@ -55,7 +82,7 @@ function Sidenav() {
               <FavoriteBorderIcon />
               <span>알림</span>
             </button>
-            <button className={styles.sidenav_button} onClick={() => setSelectedCategory(null)}>
+            <button className={styles.sidenav_button} onClick={() => setSelectedCategory("add")}>
               <AddBoxOutlinedIcon />
               <span>만들기</span>
             </button>
@@ -69,12 +96,6 @@ function Sidenav() {
             </button>
           </div>
         </div>
-
-      {/* 컴포넌트 출력 */}
-      <div>
-        {selectedCategory === "search" && <Search />}
-        {/* {selectedCategory === "alert" && <Alert />} */}
-      </div>
     </>
   );
 }

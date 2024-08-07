@@ -1,0 +1,45 @@
+.detailsPanel {
+  height: 100%;
+  background: #f8f8f8;
+  padding: 20px;
+  border-left: 1px solid #ccc;
+  overflow-y: scroll;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.userAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.userName {
+  font-weight: bold;
+}
+
+.textArea {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 20px;
+  /* padding: 10px; */
+  border-radius: 5px;
+  border: none;
+  resize: none;
+  box-sizing: border-box;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+}
+
+.optionItem {
+  margin-bottom: 15px;
+  cursor: pointer;
+}
