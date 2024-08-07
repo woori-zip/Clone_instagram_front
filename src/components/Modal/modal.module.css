@@ -72,6 +72,8 @@ p, div {
   flex-direction: row;
   overflow: hidden;
   position: relative;
+  justify-content: center; /* 수평 중앙 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
 }
 
 .modalComponentExpanded {
@@ -84,8 +86,32 @@ p, div {
   position: relative;
 }
 
-
 .flexItem {
   flex: 1;
   box-sizing: border-box;
+}
+
+.blueBtn {
+  background: #0095f6;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  padding: 7px 16px;
+  border-radius: 10px;
+}
+
+.blueBtn:hover {
+  background: rgb(24, 119, 242);
+}
+
+.closeBtn {
+  position: absolute; 
+  top: 10px;
+  right: 30px;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  color: white;
+  background: transparent;
+  border: none;
 }

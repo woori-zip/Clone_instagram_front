@@ -35,13 +35,17 @@ function Sidenav() {
     };
   }, [isModalOpen]);
 
+  const closeModal = () => {
+    setSelectedCategory(null);
+  };
+
   return (
       <>
       {/* 컴포넌트 출력 */}
       <div>
         {selectedCategory === "search" && <Search />}
         {/* {selectedCategory === "alert" && <Alert />} */}
-        {selectedCategory === "add" && <UploadModal />}
+        {selectedCategory === "add" && <UploadModal onClose={closeModal} />}
       </div>
 
       {/* 사이드 네비게이션 */}

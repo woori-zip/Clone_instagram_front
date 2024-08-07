@@ -4,8 +4,9 @@ import users from "../../users";
 import ImageUploader from "./ImageUploader";
 import ImageDetailsPanel from "./ImageDetailPanel";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import CloseIcon from '@mui/icons-material/Close';
 
-function UploadModal() {
+function UploadModal({onClose}) {
 
   // 가상 데이터
   const loggedInUserId = 2;
@@ -13,7 +14,6 @@ function UploadModal() {
 
   const [selectedImages, setSelectedImages] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [showArray, setShowArray] = useState(false); // 상태를 다시 활성화
   const [showEditor, setshowEditor] = useState(false);
 
   const handleImageChange = (e) => {
@@ -35,6 +35,13 @@ function UploadModal() {
     setSelectedImages(prevImages => prevImages.filter((_, i) => i !== index));
   };
 
+  const closeModal = () => {
+    const confirmDelete = window.confirm("게시물을 삭제하시겠어요?");
+    if (confirmDelete) {
+      onClose(); // 부모 컴포넌트에서 전달된 콜백을 호출하여 모달 닫기
+    }
+  };
+
   return (
     <div className={styles.modal}>
       <div className={styles.modalBody}>
@@ -49,15 +56,32 @@ function UploadModal() {
           <button className={styles.haaderBlueBtn}>공유하기</button>
           </>
           : 
+          <>
+          <button className={styles.headerArrowBtn} onClick={closeModal}>
+            <ArrowBackIcon />
+          </button>
           <button className={styles.haaderBlueBtn} onClick={()=>{setshowEditor(true)}}>
             다음
           </button>
+          </>
         }
         
         {/* 컴포넌트 출력부분 */}
         <div className={showEditor ? styles.modalComponentExpanded : styles.modalComponent}>
           {selectedImages.length === 0 ?
-            <input type="file" accept="image/*" multiple onChange={handleImageChange}/>
+            <>
+              <label htmlFor="imageUpload" className={styles.iconLabel}>
+                <button className={styles.blueBtn}>컴퓨터에서 선택</button>
+              </label>
+              <input 
+                type="file" 
+                id="imageUpload"  
+                accept="image/*" 
+                multiple 
+                onChange={handleImageChange} 
+                style={{display:'none'}}
+              />
+            </>
             :
             <div className={styles.flexItem}>
               <ImageUploader
@@ -79,6 +103,9 @@ function UploadModal() {
 
         </div>
       </div>
+      <button className={styles.closeBtn} onClick={closeModal}>
+        <CloseIcon />
+      </button>
     </div>
   );
 }
