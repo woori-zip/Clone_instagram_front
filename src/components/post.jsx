@@ -9,7 +9,7 @@ import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 
 function Post(props) {
   return (
-    <div className={`${styles.post} ${styles.mt20}`}>
+    <div className={`${styles.post}`}>
       {/* 프로필 */}
       <div className={styles.profile_container}>
         <div className={styles.profile}>
@@ -27,16 +27,19 @@ function Post(props) {
 
       {/* items */}
       <div className={styles.icons_container}>
-        <div className={styles.icons}>
-          <FavoriteBorder className={styles.postIcon} />
-          <ChatBubbleOutlineIcon className={styles.postIcon} />
-          <TelegramIcon className={styles.postIcon} />
+        <div>
+          <FavoriteBorder className={styles.icon} />
+          <ChatBubbleOutlineIcon className={styles.icon} />
+          <TelegramIcon className={styles.icon} />
         </div>
-        <div className={styles.post_iconSave}>
-          <BookmarkBorderIcon className={styles.postIcon} />
+        <div>
+          <BookmarkBorderIcon className={styles.icon} />
         </div>
       </div>
       <span className={styles.post_likes}>좋아요 {props.likes}개</span>
+
+      {/* line */}
+      <div className={styles.line}></div>
     </div>
   );
 }

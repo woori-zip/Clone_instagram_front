@@ -1,22 +1,23 @@
 .timeline {
   display: flex;
-  flex-direction: row;
-  margin: auto;
+
 }
 
 .section_post {
   display: flex;
-  justify-content: center;
+  justify-content: right;
   align-items: flex-start;
-  flex: 0.7;
+  flex: 0.675;
 }
 
 .post {
-  display: flex;
-  flex-direction: column;
   margin-left: 5rem;
+  width: 630px;
+  display: block;
 }
 
 .section_suggestion {
-  flex: 0.3;
+  flex: 0.325;
+  left: 0;
+  padding-top: 36px;
 }
