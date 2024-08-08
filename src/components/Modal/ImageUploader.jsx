@@ -41,25 +41,26 @@ function ImageUploader({ selectedImages, setSelectedImages, currentIndex, setCur
 
   return (
     <div className={styles.imgSlider}>
-
-      <img src={selectedImages[currentIndex]} alt="Selected" className={styles.previewImage} />
-      
-      {currentIndex > 0 && (
-      <button onClick={prevImage} className={`${styles.Btn} ${styles.prevBtn}`}>
-        <NavigateBeforeIcon />
-      </button>
-      )}
-      {currentIndex < selectedImages.length - 1 && (
-        <button onClick={nextImage} className={`${styles.Btn} ${styles.nextBtn}`}>
-          <NavigateNextIcon />
+      <div className={styles.prevImages}>
+        <img src={selectedImages[currentIndex]} alt="Selected"/>
+        {currentIndex > 0 && (
+        <button onClick={prevImage} className={`${styles.Btn} ${styles.prevBtn}`}>
+          <NavigateBeforeIcon />
         </button>
-      )}
+        )}
+        {currentIndex < selectedImages.length - 1 && (
+          <button onClick={nextImage} className={`${styles.Btn} ${styles.nextBtn}`}>
+            <NavigateNextIcon />
+          </button>
+        )}
+        
+        {!showEditor &&
+          <button className={`${styles.Btn} ${styles.stackBtn}`} onClick={toggleImgArray}>
+            <FilterNoneIcon />
+          </button>
+        }
+      </div>
       
-      {!showEditor &&
-        <button className={`${styles.Btn} ${styles.stackBtn}`} onClick={toggleImgArray}>
-          <FilterNoneIcon />
-        </button>
-      }
 
       {/* showArray가 true일 때만 이미지 스택 출력 */}
       {showArray && !showEditor && (

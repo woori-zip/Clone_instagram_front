@@ -73,7 +73,7 @@ p, div {
   overflow: hidden;
   position: relative;
   justify-content: center; /* 수평 중앙 정렬 */
-  align-items: center; /* 수직 중앙 정렬 */
+  /* align-items: center;  */
 }
 
 .modalComponentExpanded {
@@ -114,4 +114,11 @@ p, div {
   color: white;
   background: transparent;
   border: none;
+}
+
+.iconLabel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

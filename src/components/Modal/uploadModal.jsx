@@ -5,6 +5,7 @@ import ImageUploader from "./ImageUploader";
 import ImageDetailsPanel from "./ImageDetailPanel";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import CloseIcon from '@mui/icons-material/Close';
+import AddPhotoAlternateOutlinedIcon from '@mui/icons-material/AddPhotoAlternateOutlined';
 
 function UploadModal({onClose}) {
 
@@ -48,6 +49,8 @@ function UploadModal({onClose}) {
         <div className={styles.modalHeader}>
           <p>새 게시물 만들기</p>
         </div>
+
+        {/* 모달창 헤더 부분 */}
         {showEditor ?
           <>
           <button className={styles.headerArrowBtn} onClick={()=>{setshowEditor(false)}}>
@@ -60,7 +63,7 @@ function UploadModal({onClose}) {
           <button className={styles.headerArrowBtn} onClick={closeModal}>
             <ArrowBackIcon />
           </button>
-          <button className={styles.haaderBlueBtn} onClick={()=>{setshowEditor(true)}}>
+          <button className={styles.haaderBlueBtn} onClick={()=>{setshowEditor(true)}} disabled={selectedImages.length === 0}>
             다음
           </button>
           </>
@@ -71,7 +74,9 @@ function UploadModal({onClose}) {
           {selectedImages.length === 0 ?
             <>
               <label htmlFor="imageUpload" className={styles.iconLabel}>
-                <button className={styles.blueBtn}>컴퓨터에서 선택</button>
+                <button className={styles.blueBtn} onClick={() => document.getElementById('imageUpload').click()}>
+                  컴퓨터에서 선택
+                </button>
               </label>
               <input 
                 type="file" 
@@ -82,6 +87,7 @@ function UploadModal({onClose}) {
                 style={{display:'none'}}
               />
             </>
+          
             :
             <div className={styles.flexItem}>
               <ImageUploader
