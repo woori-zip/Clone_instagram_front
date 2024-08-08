@@ -7,7 +7,7 @@ function Profile({ name, profile }) {
     <div className={styles.container}>
       <div className={styles.profile_img}>
         <span className={styles.avatar}>
-          <Avatar src={profile} />
+          <Avatar src={profile} style={{width:'44px', height:'44px'}} />
         </span>
         <div className={styles.user_info}>
           <span className={styles.username}>{name}</span>
