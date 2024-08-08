@@ -1,0 +1,124 @@
+p, div {
+  padding: 0;
+  margin: 0;
+}
+
+.modal {
+  z-index: 10000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgb(0 0 0 / 80%);
+  display: flex;
+  align-items: center;
+}
+
+.modalBody {
+  background: white;
+  border-radius: 20px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.modalHeader {
+  width: 100%;
+  height: 42px;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0; /* 제목 부분의 높이는 고정 */
+}
+
+.modalHeader p {
+  margin: auto;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.headerArrowBtn {
+  border: none;
+  background: transparent;
+  font-weight: 700;
+  margin: 10px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  cursor: pointer;
+}
+
+.haaderBlueBtn {
+  border: none;
+  background: transparent;
+  color: #0095f6;
+  font-weight: 700;
+  margin: 10px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  cursor: pointer;
+}
+
+.modalComponent {
+  width: 855px; /* 기본 너비 */
+  height: 855px;
+  background: white;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  position: relative;
+  justify-content: center; /* 수평 중앙 정렬 */
+  /* align-items: center;  */
+}
+
+.modalComponentExpanded {
+  width: 1200px; /* 편집 패널이 보일 때의 확장된 너비 */
+  height: 855px;
+  background: white;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  position: relative;
+}
+
+.flexItem {
+  flex: 1;
+  box-sizing: border-box;
+}
+
+.blueBtn {
+  background: #0095f6;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  padding: 7px 16px;
+  border-radius: 10px;
+}
+
+.blueBtn:hover {
+  background: rgb(24, 119, 242);
+}
+
+.closeBtn {
+  position: absolute; 
+  top: 10px;
+  right: 30px;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  color: white;
+  background: transparent;
+  border: none;
+}
+
+.iconLabel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

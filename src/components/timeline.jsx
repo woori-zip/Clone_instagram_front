@@ -5,7 +5,7 @@ import Post from "../components/post";
 import Suggestions from "./suggestion";
 
 function Timeline() {
-  const [posts, setPosts] = useState([
+  const [posts] = useState([
     {
       user: "userid",
       postImage:
