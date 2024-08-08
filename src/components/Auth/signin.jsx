@@ -1,27 +1,65 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../../styles/auth.module.css";
+import { signin, isLoggedIn } from "../../service/ApiService";
 
-function SignIn() {
+const SignIn = () => {
+  const [form, setForm] = useState({
+    username: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prevForm) => ({
+      ...prevForm,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    signin(form)
+      .then(() => {
+        if (isLoggedIn()) {
+          alert("로그인 성공");
+        } else {
+          alert("로그인 실패");
+        }
+      })
+      .catch((error) => {
+        alert("로그인 실패");
+      });
+  };
+
   return (
     <div className={`${styles.container} ${styles.mt20}`}>
       <div className={styles.formContainer}>
         <h1 className={`${styles.heading} ${styles.mb20}`}>Instagram</h1>
-
-        <input
-          className={styles.input}
-          type="text"
-          placeholder="전화번호, 사용자 이름 또는 이메일"
-        />
-        <input
-          className={styles.input}
-          type="password"
-          placeholder="비밀번호"
-        />
-
-        <button className={`${styles.btn} ${styles.bgBlue} ${styles.mb10}`}>
-          로그인
-        </button>
+        <form onSubmit={handleSubmit}>
+          <input
+            className={styles.input}
+            type="text"
+            placeholder="전화번호, 사용자 이름 또는 이메일"
+            name="username"
+            value={form.username}
+            onChange={handleChange}
+          />
+          <input
+            className={styles.input}
+            type="password"
+            placeholder="비밀번호"
+            name="password"
+            value={form.password}
+            onChange={handleChange}
+          />
+          <button
+            type="submit"
+            className={`${styles.btn} ${styles.bgBlue} ${styles.mb10}`}
+          >
+            로그인
+          </button>
+        </form>
 
         <div className={styles.orSeparator}>
           <div className={styles.line}></div>
@@ -52,6 +90,6 @@ function SignIn() {
       </div>
     </div>
   );
-}
+};
 
 export default SignIn;
