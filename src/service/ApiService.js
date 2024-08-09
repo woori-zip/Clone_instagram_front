@@ -115,3 +115,11 @@ export const isLoggedIn = () => {
   const token = localStorage.getItem(ACCESS_TOKEN);
   return !!token; // 토큰이 있으면 true, 없으면 false 반환
 };
+
+export const getUserInfo = async () => {
+  try {
+    return await call("/api/users/profile", "GET", null);
+  } catch (error) {
+    console.error("사용자 정보 가져오기 실패:", error);
+  }
+};

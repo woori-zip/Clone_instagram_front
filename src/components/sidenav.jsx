@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react"
-import styles from "../styles/sidenav.module.css"
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import React, { useState, useEffect } from "react";
+import styles from "../styles/sidenav.module.css";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import ExploreOutlinedIcon from "@mui/icons-material/ExploreOutlined";
 import SlideshowIcon from "@mui/icons-material/Slideshow";
@@ -9,6 +9,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import Search from "../components/search";
 import UploadModal from "./Modal/uploadModal";
 
@@ -31,8 +32,8 @@ function Sidenav() {
     return () => {
       if (isModalOpen) {
         const scrollY = document.body.style.top;
-        document.body.style.cssText = '';
-        window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
+        document.body.style.cssText = "";
+        window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
       }
     };
   }, [isModalOpen]);
@@ -46,7 +47,7 @@ function Sidenav() {
   };
 
   return (
-      <>
+    <>
       {/* 컴포넌트 출력 */}
       <div>
         {selectedCategory === "search" && <Search />}
@@ -70,38 +71,62 @@ function Sidenav() {
           )}
           
         </div>
-          <div className={styles.sidenav_buttons}>
-            <button className={styles.sidenav_button} onClick={() => setSelectedCategory(null)}>
-              <HomeOutlinedIcon />
-              <span>홈</span>
-            </button>
-            <button className={styles.sidenav_button} onClick={() => setSelectedCategory("search")}>
-              <SearchIcon />
-              <span>검색</span>
-            </button>
-            <button className={styles.sidenav_button} onClick={() => setSelectedCategory(null)}>
-              <ExploreOutlinedIcon />
-              <span>탐색 탭</span>
-            </button>
-            <button className={styles.sidenav_button} onClick={() => setSelectedCategory(null)}>
-              <SlideshowIcon />
-              <span>릴스</span>
-            </button>
-            <button className={styles.sidenav_button} onClick={() => setSelectedCategory("message")}>
-              <SendOutlinedIcon />
-              <span>메시지</span>
-            </button>
-            <button className={styles.sidenav_button} onClick={() => setSelectedCategory("alert")}>
-              <FavoriteBorderIcon />
-              <span>알림</span>
-            </button>
-            <button className={styles.sidenav_button} onClick={() => setSelectedCategory("add")}>
-              <AddBoxOutlinedIcon />
-              <span>만들기</span>
-            </button>
-            {/* 프로필 여기에 추가 */}
-          </div>
-
+        <div className={styles.sidenav_buttons}>
+          <button
+            className={styles.sidenav_button}
+            onClick={() => setSelectedCategory(null)}
+          >
+            <HomeOutlinedIcon />
+            <span>홈</span>
+          </button>
+          <button
+            className={styles.sidenav_button}
+            onClick={() => setSelectedCategory("search")}
+          >
+            <SearchIcon />
+            <span>검색</span>
+          </button>
+          <button
+            className={styles.sidenav_button}
+            onClick={() => setSelectedCategory(null)}
+          >
+            <ExploreOutlinedIcon />
+            <span>탐색 탭</span>
+          </button>
+          <button
+            className={styles.sidenav_button}
+            onClick={() => setSelectedCategory(null)}
+          >
+            <SlideshowIcon />
+            <span>릴스</span>
+          </button>
+          <button
+            className={styles.sidenav_button}
+            onClick={() => setSelectedCategory("alert")}
+          >
+            <SendOutlinedIcon />
+            <span>메시지</span>
+          </button>
+          <button
+            className={styles.sidenav_button}
+            onClick={() => setSelectedCategory("alert")}
+          >
+            <FavoriteBorderIcon />
+            <span>알림</span>
+          </button>
+          <button
+            className={styles.sidenav_button}
+            onClick={() => setSelectedCategory("add")}
+          >
+            <AddBoxOutlinedIcon />
+            <span>만들기</span>
+          </button>
+          {/* 프로필 여기에 추가 */}
+          <button className={styles.sidenav_button} onClick={handleLogout}>
+            <ExitToAppIcon />
+            <span>로그아웃</span>
+          </button>
+        </div>
         <div className={styles.sidenav_more}>
           <button className={styles.sidenav_button}>
             <MenuIcon />
