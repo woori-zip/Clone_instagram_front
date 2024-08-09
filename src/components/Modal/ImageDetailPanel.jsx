@@ -1,12 +1,15 @@
 import React from "react";
+import { Avatar } from "@mui/material";
 import styles from './imagedetailpanel.module.css';
 
 function ImageDetailsPanel({ loggedInUser }) {
   return (
     <div className={styles.detailsPanel}>
       <div className={styles.userInfo}>
-        <img src={loggedInUser.profile} alt={loggedInUser.name} className={styles.userAvatar} />
-        <p className={styles.userName}>{loggedInUser.name}</p>
+        <span className={styles.avatar}>
+          <Avatar src={loggedInUser.profile} style={{ width: "28px", height: "28px" }}  />
+        </span>
+        <p className={styles.userName}>{loggedInUser.userId}</p>
       </div>
       <textarea placeholder="문구를 입력하세요..." className={styles.textArea}></textarea>
       <div className={styles.options}>

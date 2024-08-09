@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from './modal.module.css';
-import users from "../../users";
+import { getUserInfo } from "../../service/ApiService";
 import ImageUploader from "./ImageUploader";
 import ImageDetailsPanel from "./ImageDetailPanel";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -8,9 +8,20 @@ import CloseIcon from '@mui/icons-material/Close';
 
 function UploadModal({onClose}) {
 
-  // 가상 데이터
-  const loggedInUserId = 2;
-  const loggedInUser = users.find(user => user.id === loggedInUserId);
+  const [loggedInUser, setLoggedInUser] = useState(null);
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const userInfo = await getUserInfo();
+        setLoggedInUser(userInfo);
+      } catch (error) {
+        console.error("Failed to fetch user info:", error);
+      }
+    };
+
+    fetchUserInfo();
+  }, []);
 
   const [selectedImages, setSelectedImages] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
