@@ -1,6 +1,11 @@
 .imagePreviewContainer {
+  max-width: 90%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
-  bottom: 100px;
+  bottom: 50px;
   right: 10px;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 10px;
@@ -9,13 +14,17 @@
 
 .imagePreviewSlider {
   display: flex;
-  gap: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  width: 100%;
+  gap: 1rem;
 }
 
 .thumbnailContainer {
   position: relative;
-  width: 90px;
-  height:90px;
+  flex: 0 0 80px;
+  height: 80px;
 }
 
 .thumbnail {

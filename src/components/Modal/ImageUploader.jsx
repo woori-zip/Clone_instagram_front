@@ -41,26 +41,44 @@ function ImageUploader({ selectedImages, setSelectedImages, currentIndex, setCur
 
   return (
     <div className={styles.imgSlider}>
-      <div className={styles.prevImages}>
-        <img src={selectedImages[currentIndex]} alt="Selected"/>
-        {currentIndex > 0 && (
-        <button onClick={prevImage} className={`${styles.Btn} ${styles.prevBtn}`}>
-          <NavigateBeforeIcon />
-        </button>
-        )}
-        {currentIndex < selectedImages.length - 1 && (
-          <button onClick={nextImage} className={`${styles.Btn} ${styles.nextBtn}`}>
-            <NavigateNextIcon />
-          </button>
-        )}
-        
-        {!showEditor &&
-          <button className={`${styles.Btn} ${styles.stackBtn}`} onClick={toggleImgArray}>
-            <FilterNoneIcon />
-          </button>
-        }
-      </div>
-      
+      {selectedImages.length === 0 ? (
+        <>
+          <label htmlFor="imageUpload" className={styles.iconLabel}>
+            <button className={styles.blueBtn} onClick={() => document.getElementById('imageUpload').click()}>
+              컴퓨터에서 선택
+            </button>
+          </label>
+          <input 
+            type="file" 
+            id="imageUpload"  
+            accept="image/*" 
+            multiple 
+            onChange={handleImageChange} 
+            style={{display:'none'}}
+          />
+        </>
+      ) : (
+        <>
+          <div className={styles.imgContainer}>
+            <img src={selectedImages[currentIndex]} alt="Selected" />
+          </div>
+          {currentIndex > 0 && (
+            <button onClick={prevImage} className={`${styles.Btn} ${styles.prevBtn}`}>
+              <NavigateBeforeIcon />
+            </button>
+          )}
+          {currentIndex < selectedImages.length - 1 && (
+            <button onClick={nextImage} className={`${styles.Btn} ${styles.nextBtn}`}>
+              <NavigateNextIcon />
+            </button>
+          )}
+          {!showEditor && (
+            <button onClick={toggleImgArray} className={`${styles.Btn} ${styles.stackBtn}`}>
+              <FilterNoneIcon />
+            </button>
+          )}
+        </>
+      )}
 
       {/* showArray가 true일 때만 이미지 스택 출력 */}
       {showArray && !showEditor && (
@@ -72,7 +90,6 @@ function ImageUploader({ selectedImages, setSelectedImages, currentIndex, setCur
           handleImageChange={handleImageChange}
         />
       )}
-
     </div>
   );
 }
