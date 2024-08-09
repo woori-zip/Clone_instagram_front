@@ -57,18 +57,18 @@ function Sidenav() {
       {/* 사이드 네비게이션 */}
       <div
         className={`${styles.nav_design} ${
-          selectedCategory ? styles["selected"] : styles["sidenav"]
+          selectedCategory === "search" ? styles["selected"] : styles["sidenav"]
         }`}
       >
         {/* 인스타그램 로고 */}
         <div className={styles.logo_container}>
-          {!selectedCategory ? (
+          {selectedCategory === "search" ? <InstagramIcon className={styles.icon}/> : (
             <img
               src="https://i.namu.wiki/i/vC4EDlF-2rZRn7tEK6ooc6_Y5rOacL0uwUhUctMlvngdEqca4mc4vlHv8NJ5iloXDsZodFP4451tARC7YCDi0JJdbWvW3Y1bjwQFMULRHi06kYDuxCN0Nbf2O1wnrpuOClrohpI_ZtQGrcbV-xizEw.svg"
               alt="Instagram Logo"
             />
-          ) : null}
-          <InstagramIcon className={styles.icon} />
+          )}
+          
         </div>
           <div className={styles.sidenav_buttons}>
             <button className={styles.sidenav_button} onClick={() => setSelectedCategory(null)}>
@@ -87,7 +87,7 @@ function Sidenav() {
               <SlideshowIcon />
               <span>릴스</span>
             </button>
-            <button className={styles.sidenav_button} onClick={() => setSelectedCategory("alert")}>
+            <button className={styles.sidenav_button} onClick={() => setSelectedCategory("message")}>
               <SendOutlinedIcon />
               <span>메시지</span>
             </button>
@@ -108,8 +108,10 @@ function Sidenav() {
             <span>더 보기</span>
           </button>
         </div>
+      </div>
     </>
   );
 }
+
 
 export default Sidenav;
