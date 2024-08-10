@@ -5,38 +5,39 @@ import FilterNoneIcon from '@mui/icons-material/FilterNone';
 import styles from './imageuploader.module.css';
 import ImageStack from "./ImageStack";
 
-function ImageUploader({ selectedImages, setSelectedImages, currentIndex, setCurrentIndex, removeImage, showEditor }) {
-
+function ImageUploader({ selectedImages, setSelectedImages, currentIndex, setCurrentIndex, removeImage, showEditor, onSave, altTexts }) {
   const [showArray, setShowArray] = useState(false);
 
+  // 이미지 파일을 선택할 때 호출되는 핸들러
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
-    const totalImages = selectedImages.length + files.length;
-  
-    if (totalImages > 10) {
-      const allowedFiles = files.slice(0, 10 - selectedImages.length);
-      const newImages = allowedFiles.map(file => URL.createObjectURL(file));
-      setSelectedImages(prevImages => [...prevImages, ...newImages]);
-    } else {
-      const newImages = files.map(file => URL.createObjectURL(file));
-      setSelectedImages(prevImages => [...prevImages, ...newImages]);
-    }
+    const newImages = files.slice(0, 10 - selectedImages.length).map((file, index) => ({
+      id: file.name + "_" + Date.now(),
+      url: URL.createObjectURL(file),
+      file: file,
+      alt: altTexts[index] || file.name
+    }));
+    
+    setSelectedImages(prevImages => [...prevImages, ...newImages]);
   };
 
+  // 이미지 슬라이더에서 다음 이미지로 이동
   const nextImage = () => {
     if (currentIndex < selectedImages.length - 1) {
-      setCurrentIndex((prevIndex) => prevIndex + 1);
+      setCurrentIndex(prevIndex => prevIndex + 1);
     }
   };
 
+  // 이미지 슬라이더에서 이전 이미지로 이동
   const prevImage = () => {
     if (currentIndex > 0) {
-      setCurrentIndex((prevIndex) => prevIndex - 1);
+      setCurrentIndex(prevIndex => prevIndex - 1);
     }
   };
 
+  // 이미지 배열 표시/숨기기
   const toggleImgArray = () => {
-    setShowArray(!showArray);
+    setShowArray(prev => !prev);
   };
 
   return (
@@ -54,13 +55,13 @@ function ImageUploader({ selectedImages, setSelectedImages, currentIndex, setCur
             accept="image/*" 
             multiple 
             onChange={handleImageChange} 
-            style={{display:'none'}}
+            style={{ display: 'none' }}
           />
         </>
       ) : (
         <>
           <div className={styles.imgContainer}>
-            <img src={selectedImages[currentIndex]} alt="Selected" />
+            <img src={selectedImages[currentIndex].url} alt="Selected" />
           </div>
           {currentIndex > 0 && (
             <button onClick={prevImage} className={`${styles.Btn} ${styles.prevBtn}`}>
@@ -77,17 +78,20 @@ function ImageUploader({ selectedImages, setSelectedImages, currentIndex, setCur
               <FilterNoneIcon />
             </button>
           )}
+          {showEditor && (
+            <button onClick={onSave} className={styles.haaderBlueBtn}>
+              공유하기
+            </button>
+          )}
         </>
       )}
 
-      {/* showArray가 true일 때만 이미지 스택 출력 */}
       {showArray && !showEditor && (
         <ImageStack 
           selectedImages={selectedImages} 
           currentIndex={currentIndex} 
           setCurrentIndex={setCurrentIndex} 
-          removeImage={removeImage} 
-          handleImageChange={handleImageChange}
+          removeImage={removeImage}
         />
       )}
     </div>
