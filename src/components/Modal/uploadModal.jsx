@@ -5,7 +5,6 @@ import ImageUploader from "./ImageUploader";
 import ImageDetailsPanel from "./ImageDetailPanel";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import CloseIcon from '@mui/icons-material/Close';
-import AddPhotoAlternateOutlinedIcon from '@mui/icons-material/AddPhotoAlternateOutlined';
 
 function UploadModal({onClose}) {
 
@@ -16,21 +15,6 @@ function UploadModal({onClose}) {
   const [selectedImages, setSelectedImages] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showEditor, setshowEditor] = useState(false);
-
-  const handleImageChange = (e) => {
-    const files = Array.from(e.target.files);
-    const totalImages = selectedImages.length + files.length;
-  
-    // 10장 까지만 첨부할수 있게 
-    if (totalImages > 10) {
-      const allowedFiles = files.slice(0, 10 - selectedImages.length);
-      const newImages = allowedFiles.map(file => URL.createObjectURL(file));
-      setSelectedImages(prevImages => [...prevImages, ...newImages]);
-    } else {
-      const newImages = files.map(file => URL.createObjectURL(file));
-      setSelectedImages(prevImages => [...prevImages, ...newImages]);
-    }
-  };
 
   const removeImage = (index) => {
     setSelectedImages(prevImages => prevImages.filter((_, i) => i !== index));
@@ -70,41 +54,18 @@ function UploadModal({onClose}) {
         }
         
         {/* 컴포넌트 출력부분 */}
-        <div className={showEditor ? styles.modalComponentExpanded : styles.modalComponent}>
-          {selectedImages.length === 0 ?
-            <>
-              <label htmlFor="imageUpload" className={styles.iconLabel}>
-                <button className={styles.blueBtn} onClick={() => document.getElementById('imageUpload').click()}>
-                  컴퓨터에서 선택
-                </button>
-              </label>
-              <input 
-                type="file" 
-                id="imageUpload"  
-                accept="image/*" 
-                multiple 
-                onChange={handleImageChange} 
-                style={{display:'none'}}
-              />
-            </>
-          
-            :
-            <div className={styles.flexItem}>
-              <ImageUploader
-                selectedImages={selectedImages}
-                setSelectedImages={setSelectedImages}
-                currentIndex={currentIndex}
-                setCurrentIndex={setCurrentIndex}
-                showEditor={showEditor}
-                removeImage={removeImage}
-              />
-            </div>
-          }
+        <div className={styles.modalComponent}>
+          <ImageUploader
+            selectedImages={selectedImages}
+            setSelectedImages={setSelectedImages}
+            currentIndex={currentIndex}
+            setCurrentIndex={setCurrentIndex}
+            showEditor={showEditor}
+            removeImage={removeImage}
+          />
           
           {showEditor &&
-            <div className={styles.flexItem}>
               <ImageDetailsPanel loggedInUser={loggedInUser} />
-            </div>
           }
 
         </div>

@@ -23,6 +23,7 @@ p, div {
   flex-direction: column;
   overflow: hidden;
   position: relative;
+  transition: all 0.3s ease-in-out;
 }
 
 .modalHeader {
@@ -65,43 +66,13 @@ p, div {
 }
 
 .modalComponent {
-  width: 855px; /* 기본 너비 */
-  height: 855px;
+  width: auto;
   background: white;
   display: flex;
   flex-direction: row;
   overflow: hidden;
   position: relative;
-  justify-content: center; /* 수평 중앙 정렬 */
-  /* align-items: center;  */
-}
-
-.modalComponentExpanded {
-  width: 1200px; /* 편집 패널이 보일 때의 확장된 너비 */
-  height: 855px;
-  background: white;
-  display: flex;
-  flex-direction: row;
-  overflow: hidden;
-  position: relative;
-}
-
-.flexItem {
-  flex: 1;
-  box-sizing: border-box;
-}
-
-.blueBtn {
-  background: #0095f6;
-  color: white;
-  font-size: 1rem;
-  border: none;
-  padding: 7px 16px;
-  border-radius: 10px;
-}
-
-.blueBtn:hover {
-  background: rgb(24, 119, 242);
+  justify-content: center;
 }
 
 .closeBtn {

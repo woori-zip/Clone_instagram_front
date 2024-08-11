@@ -18,6 +18,7 @@ function ImageStack({ selectedImages, currentIndex, setCurrentIndex, removeImage
             <button className={styles.removeButton} onClick={() => removeImage(index)}>X</button>
           </div>
         ))}
+        {/* 이미지가 10개 미만일 떄 사진 첨부 input 버튼 출력 */}
         {selectedImages.length < 10 && 
           <div>
             <label htmlFor="imageUpload" className={styles.iconLabel}>
