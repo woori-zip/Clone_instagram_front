@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../../styles/auth.module.css";
-import { signin, isLoggedIn } from "../../service/ApiService";
+import { signin } from "../../service/ApiService";
 
 const SignIn = () => {
   const [form, setForm] = useState({
@@ -9,6 +9,7 @@ const SignIn = () => {
     password: "",
   });
 
+  // 입력 값 변경 핸들러
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((prevForm) => ({
@@ -17,19 +18,14 @@ const SignIn = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  // 로그인 폼 제출 핸들러
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    signin(form)
-      .then(() => {
-        if (isLoggedIn()) {
-          alert("로그인 성공");
-        } else {
-          alert("로그인 실패");
-        }
-      })
-      .catch((error) => {
-        alert("로그인 실패");
-      });
+    try {
+      await signin(form); // 로그인 시도
+    } catch (error) {
+      alert("로그인 실패: " + error.message);
+    }
   };
 
   return (
