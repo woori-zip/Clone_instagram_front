@@ -8,14 +8,13 @@ function ImageStack({ selectedImages, currentIndex, setCurrentIndex, removeImage
     <div className={styles.imagePreviewContainer}>
       <div className={styles.imagePreviewSlider}>
         {selectedImages.map((image, index) => (
-          <div key={index} className={styles.thumbnailContainer}>
+          <div key={image.id} className={styles.thumbnailContainer}>
             <img 
-              src={image} 
-              alt={`Image ${index + 1}`} 
+              src={image.url} alt={image.alt}
               className={`${styles.thumbnail} ${index === currentIndex ? styles.selectedThumbnail : ""}`} 
               onClick={() => setCurrentIndex(index)}
             />
-            <button className={styles.removeButton} onClick={() => removeImage(index)}>X</button>
+            <button className={styles.removeButton} onClick={() => removeImage(image.id)}>X</button>
           </div>
         ))}
         {/* 이미지가 10개 미만일 떄 사진 첨부 input 버튼 출력 */}
