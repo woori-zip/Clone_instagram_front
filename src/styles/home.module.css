@@ -1,0 +1,30 @@
+.home_container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.sidenav_container {
+  flex: 0 0 250px;
+}
+
+.timeline_container {
+  flex: 1;
+  margin-left: 20px;
+}
+
+/* 576px 이하의 반응형 스타일 */
+@media (max-width: 576px) {
+  .home_container {
+    flex-direction: column;
+  }
+
+  .sidenav_container {
+    display: none;
+  }
+
+  .timeline_container {
+    margin-left: 0;
+    width: 100%;
+  }
+}
