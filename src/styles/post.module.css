@@ -6,7 +6,8 @@
 } */
 
 .post {
-  margin: 0 80px auto;
+  width: 470px;
+  margin: auto;
 }
 
 .profile_container {
@@ -65,4 +66,10 @@
   height: 1px;
   background: #EEE;
   margin: 16px 0;
+}
+
+@media (max-width: 470px) {
+  .post {
+    width: 100%;;
+  }
 }

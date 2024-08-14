@@ -4,10 +4,10 @@
   max-width: 1010px; /* 최대 너비 설정 */
   margin: 0 auto; /* 양쪽 여백을 동일하게 */
   transition: all 0.3s ease;
+  flex-direction: row;
 }
 
 .main_content {
-  flex: 2; /* Timeline의 넓이를 더 넓게 설정 */
   display: flex;
   flex-direction: column;
   transition: all 0.3s ease;
@@ -15,10 +15,10 @@
 
 .section_post {
   width: 630px;
+  margin: auto;
 }
 
 .section_suggestion {
-  flex: 1; /* Suggestions 영역을 상대적으로 좁게 설정 */
   padding-top: 36px;
   margin-left: 20px; /* Timeline과 Suggestions 사이의 여백 */
   transition: all 0.3s ease;
@@ -118,45 +118,27 @@
   right: 30px;
 }
 
-/* 작은 화면에서의 레이아웃 */
-@media (max-width: 1264px) {
-  .timeline {
-    flex-direction: column;
-    max-width: 100%;
-    margin: 0;
-  }
-
-  .main_content {
-    width: 100%;
-    margin: 0;
-  }
-
+@media (max-width: 1160px) {
   .section_suggestion {
-    width: 100%;
-    margin-left: 0;
-    margin-top: 20px; /* 위쪽 여백 추가 */
+    display: none; /* Suggestions 숨기기 */
   }
-
-  /* .story {
-    padding: 15px 10px;
-  }
-
-  .story_block {
-    width: 100%;
-    overflow-x: auto;
-  } */
 }
 
-/* 768px 이하의 반응형 스타일 */
+/* Responsive layout for screens below 768px */
 @media (max-width: 768px) {
   .timeline {
     flex-direction: column; /* 세로 정렬로 변경 */
     max-width: 100%; /* 최대 너비 100%로 설정 */
     margin: 0; /* 여백 제거 */
+    min-width: 100%; /* 최소 너비 설정 */
   }
 
-  .section_suggestion {
-    display: none; /* Suggestions 숨기기 */
+  .main_content {
+    width: 100%; /* 전체 너비 사용 */
+  }
+
+  .section_post {
+    width: 100%;
   }
 
   .sidenav {
