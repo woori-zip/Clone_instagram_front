@@ -7,13 +7,14 @@
   align-items: right;
 }
 
-/* 1264px 이하의 반응형 스타일 */
+/* 1920px 이하의 반응형 스타일 */
 @media (max-width: 1920px) {
   .home_container {
     margin-left: 74px;
   }
 }
 
+/* 760px 이하의 반응형 스타일 */
 @media (max-width: 760px) {
   .home_container {
     width: 100%; 

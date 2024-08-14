@@ -69,16 +69,13 @@ function Sidenav() {
         <div>
           {/* Logo */}
           <div className={styles.logoContainer}>
-            {isSearchActive ? (
+            <a href="/">
+              <img
+                src="https://i.namu.wiki/i/hgoJIHeQBQm7NHQd2UNeI5D_uxP4vQaXX8c-SMHxiwJPZKM1SG9z_K_TTAps0O4v6AvRDQr03o_i19enOxsPb2wpx_6SKOaQHp4Ds8Ruhh7C8NLcy9qMrghkhzgzlZHNMkdlYLY0uQMQQrut9dDX3g.svg"
+                alt="Instagram Logo"
+              />
               <InstagramIcon />
-            ) : (
-              <a href="/">
-                <img
-                  src="https://i.namu.wiki/i/hgoJIHeQBQm7NHQd2UNeI5D_uxP4vQaXX8c-SMHxiwJPZKM1SG9z_K_TTAps0O4v6AvRDQr03o_i19enOxsPb2wpx_6SKOaQHp4Ds8Ruhh7C8NLcy9qMrghkhzgzlZHNMkdlYLY0uQMQQrut9dDX3g.svg"
-                  alt="Instagram Logo"
-                />
-              </a>
-            )}
+            </a>
           </div>
 
           {/* navItems 출력 */}
@@ -95,7 +92,7 @@ function Sidenav() {
             ))}
           </div>
 
-          <div className={styles.sidenavMore}>
+          <div className={styles.navItems}>
             <button className={styles.navButton}>
               <MenuIcon />
               <span>더 보기</span>

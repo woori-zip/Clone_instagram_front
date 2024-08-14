@@ -1,4 +1,3 @@
-/* Sidebar container */
 .navContainer {
   width: 240px;
   height: 100vh;
@@ -12,14 +11,13 @@
   justify-content: space-between;
   padding: 20px 10px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: width 0.3s ease; /* Smooth transition when resizing */
+  transition: width 0.3s ease;
   z-index: 1000;
 }
 
-/* Logo container */
+/* 로고 */
 .logoContainer {
   display: flex;
-  /* justify-content: center; */
   margin-bottom: 20px;
   padding: 10px 15px;
   height: 50px;
@@ -32,12 +30,12 @@
 }
 
 .logoContainer svg {
-  display: none; /* Hide the icon by default */
-  font-size: 24px; /* Adjust the icon size as needed */
+  display: none; 
+  font-size: 24px; 
 
 }
 
-/* Navigation items container */
+/* nav 버튼 container */
 .navItems {
   flex-grow: 1;
   display: flex;
@@ -45,7 +43,6 @@
   gap: 10px;
 }
 
-/* Individual navigation buttons */
 .navButton {
   display: flex;
   align-items: center;
@@ -58,7 +55,7 @@
   border-radius: 8px;
   cursor: pointer;
   text-align: left;
-  transition: background-color 0.2s ease, justify-content 0.3s ease; /* Smooth transition for centering */
+  transition: background-color 0.2s ease, justify-content 0.3s ease; 
 }
 
 .navButton:hover {
@@ -74,37 +71,9 @@
   white-space: nowrap;
 }
 
-/* Last "More" button */
-.navButton:last-child {
-  margin-top: auto;
-}
-
-.menuIcon {
-  border-top: 1px solid #dbdbdb;
-  padding-top: 10px;
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.menuIcon svg {
-  font-size: 28px;
-}
-
-/* Active state for the selected item */
-.navButtonActive {
-  background-color: #efefef;
-  color: #262626;
-}
-
-.navButtonActive svg {
-  color: #000;
-}
-
-/* Media query to adjust sidebar width and hide text when screen width is below 768px */
 @media (max-width: 1920px) {
   .navContainer {
-    width: 54px; /* Reduced width when span is hidden */
+    width: 54px;
   }
 
   .navButton span {
@@ -126,7 +95,7 @@
   }
 }
 
-/* Active state for the selected item */
+/* 클릭된 버튼 */
 .seletedBtn {
   background-color: #efefef;
 }
@@ -146,4 +115,13 @@
 
 .navContainerActive .logoContainer svg {
   display: block; 
+}
+
+/* line */
+.line {
+  height: 100%;
+  background: pink;
+  width: 3px;
+  margin: 0;
+  padding: 0;
 }

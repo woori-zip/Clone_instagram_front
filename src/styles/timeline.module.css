@@ -1,10 +1,11 @@
 .timeline {
   display: flex;
-  justify-content: center; /* 중앙 정렬 */
-  max-width: 1010px; /* 최대 너비 설정 */
-  margin: 0 auto; /* 양쪽 여백을 동일하게 */
+  justify-content: center; 
+  max-width: 1010px; 
+  margin: 0 auto; 
   transition: all 0.3s ease;
   flex-direction: row;
+  gap: 20px;
 }
 
 .main_content {
@@ -15,12 +16,10 @@
 
 .section_post {
   width: 630px;
-  /* margin: auto; */
 }
 
 .section_suggestion {
   padding-top: 36px;
-  margin-left: 20px; /* Timeline과 Suggestions 사이의 여백 */
   transition: all 0.3s ease;
 }
 
@@ -44,7 +43,7 @@
 }
 
 .story_block {
-  margin-bottom: 10px; /* Post와 Story 사이에 간격 추가 */
+  margin-bottom: 10px; 
   display: flex;
   align-items: center;
   gap: 13px;
@@ -120,45 +119,23 @@
 
 @media (max-width: 1160px) {
   .section_suggestion {
-    display: none; /* Suggestions 숨기기 */
+    display: none;
   }
 }
 
-/* Responsive layout for screens below 768px */
 @media (max-width: 768px) {
   .timeline {
-    flex-direction: column; /* 세로 정렬로 변경 */
-    max-width: 100%; /* 최대 너비 100%로 설정 */
-    margin: 0; /* 여백 제거 */
-    min-width: 100%; /* 최소 너비 설정 */
+    flex-direction: column; 
+    max-width: 100%; 
+    margin: 0;
+    min-width: 100%; 
   }
 
   .main_content {
-    width: 100%; /* 전체 너비 사용 */
+    width: 100%;
   }
 
   .section_post {
     width: 100%;
-  }
-
-  .sidenav {
-    width: 72px; /* Sidenav 크기 축소 */
-  }
-
-  .logo_container img {
-    display: none; /* 작은 화면에서는 이미지 숨김 */
-  }
-
-  .logo_container .icon {
-    display: block; /* 작은 화면에서는 아이콘 표시 */
-    font-size: 1.7rem; /* 원하는 크기로 설정 */
-  }
-
-  .sidenav_buttons {
-    flex-direction: column;
-  }
-
-  .sidenav_button span {
-    display: none; /* 텍스트 숨기기 */
   }
 }
