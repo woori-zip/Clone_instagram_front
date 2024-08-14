@@ -6,7 +6,7 @@ h2,h4 {
 .container {
   position: fixed;
   top: 0;
-  left: 72px;
+  left: 74px;
   width:350px;
   height: 100vh;
   z-index: 1000;
@@ -43,4 +43,10 @@ h2,h4 {
 
 .history span {
   margin: auto;
+}
+
+@media (max-width: 768px) {
+  .container {
+    display: none;
+  }
 }

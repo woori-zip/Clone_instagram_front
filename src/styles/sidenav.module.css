@@ -111,13 +111,12 @@
     display: none;
   }
 
-  /* Hide the image logo and show the icon */
   .logoContainer img {
-    display: none; /* Hide the image logo */
+    display: none; 
   }
 
   .logoContainer svg {
-    display: block; /* Show the InstagramIcon */
+    display: block; 
   }
 }
 
@@ -125,4 +124,26 @@
   .navContainer {
     display: none;
   }
+}
+
+/* Active state for the selected item */
+.seletedBtn {
+  background-color: #efefef;
+}
+
+/* active 상태일때 */
+.navContainerActive {
+  width: 54px; 
+}
+
+.navContainerActive .navButton span {
+  display: none;
+}
+
+.navContainerActive .logoContainer img {
+  display: none; 
+}
+
+.navContainerActive .logoContainer svg {
+  display: block; 
 }

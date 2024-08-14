@@ -19,6 +19,7 @@ import { signout } from "../service/ApiService"; // 로그아웃 함수 임포�
 function Sidenav() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const isModalOpen = selectedCategory === "add";
+  const isSearchActive = selectedCategory === "search";
 
   useEffect(() => {
     if (isModalOpen) {
@@ -49,48 +50,63 @@ function Sidenav() {
   const navItems = [
     { icon: <HomeOutlinedIcon />, label: "홈", category: null },
     { icon: <SearchIcon />, label: "검색", category: "search" },
-    { icon: <ExploreOutlinedIcon />, label: "탐색 탭", category: null },
-    { icon: <SlideshowIcon />, label: "릴스", category: null },
-    { icon: <SendOutlinedIcon />, label: "메시지", category: "alert" },
+    { icon: <ExploreOutlinedIcon />, label: "탐색 탭", category: "explore" },
+    { icon: <SlideshowIcon />, label: "릴스", category: "shorts" },
+    { icon: <SendOutlinedIcon />, label: "메시지", category: "message" },
     { icon: <FavoriteBorderIcon />, label: "알림", category: "alert" },
     { icon: <AddBoxOutlinedIcon />, label: "만들기", category: "add" },
     { icon: <ExitToAppIcon />, label: "로그아웃", onClick: handleLogout },
   ];
 
   return (
-    <div className={styles.navContainer}>
-      {/* 사이드 네비게이션 */}
-      <div>
-        {/* Logo */}
-        <a className={styles.logoContainer} href="/">
-          <img
-            src="https://i.namu.wiki/i/hgoJIHeQBQm7NHQd2UNeI5D_uxP4vQaXX8c-SMHxiwJPZKM1SG9z_K_TTAps0O4v6AvRDQr03o_i19enOxsPb2wpx_6SKOaQHp4Ds8Ruhh7C8NLcy9qMrghkhzgzlZHNMkdlYLY0uQMQQrut9dDX3g.svg"
-            alt="Instagram Logo"
-          />
-          <InstagramIcon />
-        </a>
+    <div>
+      <div
+        className={`${styles.navContainer} ${
+          isSearchActive ? styles.navContainerActive : ""
+        }`}
+      >
+        {/* 사이드 네비게이션 */}
+        <div>
+          {/* Logo */}
+          <div className={styles.logoContainer}>
+            {isSearchActive ? (
+              <InstagramIcon />
+            ) : (
+              <a href="/">
+                <img
+                  src="https://i.namu.wiki/i/hgoJIHeQBQm7NHQd2UNeI5D_uxP4vQaXX8c-SMHxiwJPZKM1SG9z_K_TTAps0O4v6AvRDQr03o_i19enOxsPb2wpx_6SKOaQHp4Ds8Ruhh7C8NLcy9qMrghkhzgzlZHNMkdlYLY0uQMQQrut9dDX3g.svg"
+                  alt="Instagram Logo"
+                />
+              </a>
+            )}
+          </div>
 
-        {/* navItems 출력 */}
-        <div className={styles.navItems}>
-          {navItems.map((item, index) => (
-            <button
-              key={index}
-              className={styles.navButton}
-              onClick={() =>
-                item.onClick ? item.onClick() : setSelectedCategory(item.category)
-              }
-            >
-              {item.icon}
-              <span>{item.label}</span>
+          {/* navItems 출력 */}
+          <div className={styles.navItems}>
+            {navItems.map((item, index) => (
+              <button
+                key={index}
+                className={`${styles.navButton} ${selectedCategory === item.category ? styles.seletedBtn : ''}`}
+                onClick={() => setSelectedCategory(item.category)}
+              >
+                {item.icon}
+                <span>{item.label}</span>
+              </button>
+            ))}
+          </div>
+
+          <div className={styles.sidenavMore}>
+            <button className={styles.navButton}>
+              <MenuIcon />
+              <span>더 보기</span>
             </button>
-          ))}
+          </div>
         </div>
-
-        <button className={styles.navButton}>
-          <MenuIcon />
-          <span>더 보기</span>
-        </button>
       </div>
+
+      {selectedCategory === "search" && <Search />}
+      {selectedCategory === "add" && <UploadModal onClose={closeModal} />}
+      {/* Add Alert component if needed */}
     </div>
   );
 }
