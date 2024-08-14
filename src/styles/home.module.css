@@ -20,6 +20,7 @@
   }
 
   .sidenav_container {
+    /* width: 0; */
     display: none;
   }
 

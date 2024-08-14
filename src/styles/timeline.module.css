@@ -13,6 +13,10 @@
   transition: all 0.3s ease;
 }
 
+.section_post {
+  width: 630px;
+}
+
 .section_suggestion {
   flex: 1; /* Suggestions 영역을 상대적으로 좁게 설정 */
   padding-top: 36px;
@@ -21,7 +25,7 @@
 }
 
 .story {
-  width: 100%;
+  width: inherit;
   padding: 20px 10px;
   box-sizing: border-box;
   display: flex;
@@ -40,7 +44,6 @@
 }
 
 .story_block {
-  width: 610px;
   margin-bottom: 10px; /* Post와 Story 사이에 간격 추가 */
   display: flex;
   align-items: center;
@@ -61,17 +64,25 @@
   align-items: center;
 }
 
-.image_div {
+.story_profile {
   width: 56px;
   height: 56px;
-  border-radius: 100%;
+  border-radius: 50%;
   padding: 2px;
+  border: 1px solid #ccc;
+}
+
+.unchecked {
   border: 2px solid purple;
+}
+
+.checked {
+  border: 1px solid #ccc;
 }
 
 .status_img {
   width: 100%;
-  height: 56px;
+  height: auto;
   border-radius: 100%;
 }
 
@@ -126,14 +137,14 @@
     margin-top: 20px; /* 위쪽 여백 추가 */
   }
 
-  .story {
+  /* .story {
     padding: 15px 10px;
   }
 
   .story_block {
     width: 100%;
     overflow-x: auto;
-  }
+  } */
 }
 
 /* 768px 이하의 반응형 스타일 */
