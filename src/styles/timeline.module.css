@@ -124,6 +124,10 @@
 }
 
 @media (max-width: 768px) {
+  /* .section_post {
+    margin-top: 60px;
+  } */
+
   .timeline {
     flex-direction: column; 
     max-width: 100%; 
