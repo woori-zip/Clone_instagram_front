@@ -44,6 +44,7 @@ function Sidenav() {
   };
 
   const handleLogout = () => {
+    console.log("Logout clicked");
     signout();
   };
 
@@ -55,8 +56,18 @@ function Sidenav() {
     { icon: <SendOutlinedIcon />, label: "메시지", category: "message" },
     { icon: <FavoriteBorderIcon />, label: "알림", category: "alert" },
     { icon: <AddBoxOutlinedIcon />, label: "만들기", category: "add" },
-    { icon: <ExitToAppIcon />, label: "로그아웃", onClick: handleLogout },
+    // 로그아웃 항목은 onClick 이벤트를 직접 처리
+    { icon: <ExitToAppIcon />, label: "로그아웃", category: "logout", onClick: handleLogout },
   ];
+
+  const handleItemClick = (item) => {
+    if (item.category === "logout") {
+      // 로그아웃 항목의 경우, setSelectedCategory를 호출하지 않고 로그아웃만 실행
+      item.onClick();
+    } else {
+      setSelectedCategory(item.category);
+    }
+  };  
 
   return (
     <div>
@@ -78,13 +89,14 @@ function Sidenav() {
             </a>
           </div>
 
+
           {/* navItems 출력 */}
           <div className={styles.navItems}>
             {navItems.map((item, index) => (
               <button
                 key={index}
                 className={`${styles.navButton} ${selectedCategory === item.category ? styles.seletedBtn : ''}`}
-                onClick={() => setSelectedCategory(item.category)}
+                onClick={() => handleItemClick(item)}
               >
                 {item.icon}
                 <span>{item.label}</span>
@@ -92,12 +104,14 @@ function Sidenav() {
             ))}
           </div>
 
-          <div className={styles.navItems}>
+          <div className={`${styles.navItems} ${styles.lastItem}`}>
             <button className={styles.navButton}>
               <MenuIcon />
               <span>더 보기</span>
             </button>
           </div>
+
+
         </div>
       </div>
 
