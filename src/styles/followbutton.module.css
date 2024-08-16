@@ -1,0 +1,23 @@
+.follow {
+  color: #0095f6;
+  font-weight: bold;
+  background: 0;
+  border: 0;
+}
+
+.follow:hover {
+  color: #1d3c78;
+  cursor: pointer;
+}
+
+.following {
+  color: black;
+  font-weight: bold;
+  background: 0;
+  border: 0;
+  cursor: pointer;
+}
+
+.following:hover {
+  color: #8e8e8e;
+}

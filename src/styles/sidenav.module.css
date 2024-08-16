@@ -31,8 +31,8 @@
 }
 
 .logoContainer svg {
-  display: none; 
-  font-size: 24px; 
+  display: none;
+  font-size: 24px;
 }
 
 /* nav 버튼 container */
@@ -53,7 +53,7 @@
 
 .lastItem {
   position: absolute;
-  bottom:50px;
+  bottom: 50px;
 }
 
 .navButton {
@@ -68,7 +68,7 @@
   border-radius: 8px;
   cursor: pointer;
   text-align: left;
-  transition: background-color 0.2s ease, justify-content 0.3s ease; 
+  transition: background-color 0.2s ease, justify-content 0.3s ease;
 }
 
 .navButton:hover {
@@ -82,10 +82,10 @@
 .navButton span {
   margin-left: 15px;
   white-space: nowrap;
-  transition: opacity 0.3s ease; 
+  transition: opacity 0.3s ease;
 }
 
-@media (max-width: 1920px) {
+@media (max-width: 1280px) {
   .navContainer {
     width: 54px;
   }
@@ -95,11 +95,11 @@
   }
 
   .logoContainer img {
-    display: none; 
+    display: none;
   }
 
   .logoContainer svg {
-    display: block; 
+    display: block;
   }
 }
 
@@ -116,7 +116,7 @@
 
 /* active 상태일때 */
 .navContainerActive {
-  width: 54px; 
+  width: 54px;
 }
 
 .navContainerActive .navButton span {
@@ -124,11 +124,11 @@
 }
 
 .navContainerActive .logoContainer img {
-  display: none; 
+  display: none;
 }
 
 .navContainerActive .logoContainer svg {
-  display: block; 
+  display: block;
 }
 
 /*  */
@@ -147,14 +147,14 @@
   padding: 0 16px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   justify-content: space-between;
-  position: fixed; 
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #fff; 
-  z-index: 1001; 
+  background-color: #fff;
+  z-index: 1001;
   box-sizing: border-box;
-  transition: all 0.3s ease; 
+  transition: all 0.3s ease;
 }
 
 .smallNavLogoContainer {
@@ -182,21 +182,21 @@
   height: 60px;
   padding: 0 16px;
   box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
-  position: fixed; 
+  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: #fff; 
-  z-index: 1001; 
+  background-color: #fff;
+  z-index: 1001;
   box-sizing: border-box;
-  transition: all 0.3s ease; 
+  transition: all 0.3s ease;
 }
 
 .smallNavIconContainer {
   display: flex;
   width: 100%;
-  justify-content: space-between; 
-  align-items: center; 
+  justify-content: space-between;
+  align-items: center;
 }
 
 .smallNavIconContainer svg {

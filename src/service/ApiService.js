@@ -16,9 +16,14 @@ const axiosInstance = axios.create({
 // 요청 인터셉터 설정: 각 요청에 `access` 토큰을 `access` 헤더에 추가
 axiosInstance.interceptors.request.use((config) => {
   const token = localStorage.getItem(ACCESS_TOKEN);
+
   if (token && config.url !== "/signup" && config.url !== "/login") {
     config.headers["access"] = token; // `access` 토큰을 `access` 헤더에 추가
+    console.log("Access token added to header:", token);
+  } else {
+    console.log("No access token found or it's a signup/login request");
   }
+
   return config;
 });
 
@@ -201,8 +206,21 @@ export const isLoggedIn = () => {
 // 사용자 정보 가져오기 함수
 export const getUserInfo = async () => {
   try {
-    return await call("/api/users/profile", "GET", null);
+    const response = await axiosInstance.get("/api/users/profile");
+    return response.data;
   } catch (error) {
     console.error("사용자 정보 가져오기 실패:", error);
+    throw error; // 오류 발생 시, 예외를 던져서 호출 측에서 처리할 수 있도록 합니다.
+  }
+};
+
+// 추천 사용자 리스트 가져오기
+export const getSuggestedUsers = async () => {
+  try {
+    const response = await axiosInstance.get("/api/users/suggestions?limit=5");
+    return response.data;
+  } catch (error) {
+    console.error("추천 사용자 가져오기 실패:", error);
+    throw error; // 오류 발생 시, 예외를 던져서 호출 측에서 처리할 수 있도록 합니다.
   }
 };
