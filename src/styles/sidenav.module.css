@@ -36,12 +36,24 @@
 }
 
 /* nav 버튼 container */
+.iconContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+
 .navItems {
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
   gap: 10px;
   transition: all 0.3s ease;
+}
+
+.lastItem {
+  position: absolute;
+  bottom:50px;
 }
 
 .navButton {
