@@ -1,30 +1,23 @@
 .home_container {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-}
-
-.sidenav_container {
-  flex: 0 0 250px;
+  justify-content: center;
+  margin-left: 240px;
 }
 
 .timeline_container {
-  flex: 1;
-  margin-left: 20px;
+  align-items: right;
 }
 
-/* 576px 이하의 반응형 스타일 */
-@media (max-width: 576px) {
+/* 1920px 이하의 반응형 스타일 */
+@media (max-width: 1920px) {
   .home_container {
-    flex-direction: column;
+    margin-left: 74px;
   }
+}
 
-  .sidenav_container {
-    display: none;
-  }
-
-  .timeline_container {
-    margin-left: 0;
-    width: 100%;
+/* 760px 이하의 반응형 스타일 */
+@media (max-width: 760px) {
+  .home_container {
+    width: 100%; 
+    margin: 0 auto;
   }
 }

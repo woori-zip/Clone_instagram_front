@@ -6,15 +6,14 @@ h2,h4 {
 .container {
   position: fixed;
   top: 0;
-  left: 72px;
+  left: 74px;
   width:350px;
   height: 100vh;
   z-index: 1000;
-  border-right: 1px solid #d3d3d3;
+  border: 1px solid #d3d3d3;
   background-color: white;
   padding: 1.5rem;
   transition: all 0.3s ease;
-  border-radius: 1rem;
   overflow: hidden;
 }
 
@@ -43,4 +42,10 @@ h2,h4 {
 
 .history span {
   margin: auto;
+}
+
+@media (max-width: 768px) {
+  .container {
+    display: none;
+  }
 }
