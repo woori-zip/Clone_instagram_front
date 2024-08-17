@@ -85,7 +85,7 @@
   transition: opacity 0.3s ease; 
 }
 
-@media (max-width: 1920px) {
+@media (max-width: 1265px) {
   .navContainer {
     width: 54px;
   }

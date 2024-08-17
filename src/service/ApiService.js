@@ -198,11 +198,29 @@ export const isLoggedIn = () => {
   return !!token;
 };
 
-// 사용자 정보 가져오기 함수
+// 로그인한 사용자 정보 가져오기 함수
 export const getUserInfo = async () => {
   try {
     return await call("/api/users/profile", "GET", null);
   } catch (error) {
     console.error("사용자 정보 가져오기 실패:", error);
+  }
+};
+
+// 특정 사용자의 정보 가져오기 함수
+export const getUserInfoById = async (userId) => {
+  try {
+    return await call(`/api/users/profile/${userId}`, "GET", null); // 특정 사용자의 정보
+  } catch (error) {
+    console.error("특정 사용자 정보 가져오기 실패:", error);
+  }
+};
+
+
+export const getUserPosts = async (id) => {
+  try {
+    return await call(`/api/posts/user/${id}`, "GET", null);
+  } catch (error) {
+    console.error("사용자 게시물 가져오기 실패:", error);
   }
 };
