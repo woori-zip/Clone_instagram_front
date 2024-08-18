@@ -1,0 +1,192 @@
+.MyPageContainer {
+  width: 975px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.ProfileContainer {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.ProfileImgContainer {
+  border-radius: 50%;
+  position: relative;
+  justify-self: center;
+  grid-row-start: 1;
+  grid-row-end: 5;
+  grid-column-start: 1;
+  margin-right: 28px;
+}
+
+.ProfileImgContainer img {
+  max-width: 150px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.First {
+  grid-column: 2;
+  grid-row: 1;
+  margin: auto 0;
+}
+
+.FirstContent {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.buttonContainer p {
+  font-size: 20px;
+}
+
+.buttonContainer div {
+  display: flex;
+  background: #F5F5F5;
+  font-weight: 600;
+  padding: 0 16px;
+  cursor: pointer;
+  border-radius: 10px;
+  height: 32px;
+  width: auto;
+  align-items: center;
+}
+
+.buttonContainer div:hover {
+  background:rgba(0, 0, 0, 0.4);
+}
+
+.Second {
+  display: block;
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.SecondContent {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+  margin-bottom: 20px;
+}
+
+.SecondContent p {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.Third {
+  display: block;
+  grid-column: 2;
+  grid-row: 3;
+}
+
+@media (max-width: 1280px) {
+  .MyPageContainer {
+    width: 100%;
+  }
+
+  .postsContainer {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  
+  .ProfileContainer {
+    grid-template-columns: 120px 1fr;
+  } 
+
+  .ProfileImgContainer {
+    margin: 0 auto;
+  }
+
+  .ProfileImgContainer img {
+    width: 77px;
+    transition: all 1s ease;
+  }
+
+  .FirstContent {
+    flex-direction: column;
+  }
+
+  .Second {
+    display: none;
+  }
+
+  .Third {
+    grid-column: 1/3;
+    grid-row: 4;
+    margin: 0 16px 16px 16px;
+  }
+}
+
+.HighLightContainer {
+  grid-row: 6;
+  grid-column: 1/3;
+  height: 109px;
+}
+
+.tabContainer {
+  border-top: 1px solid #ccc;
+  justify-content: center;
+  display: flex;
+  gap: 60px;
+  align-items: center;
+  grid-row: 7;
+  grid-column: 1/3;
+}
+
+.tabContainer a {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.activeTab {
+  border-top: 2px solid rgba(38, 38, 38) !important;
+  margin-top: -1px;
+}
+
+.postsContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3개의 열로 고정 */
+  gap:5px;
+  padding: 0 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.post {
+  width: 100%;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  position: relative;
+}
+
+.post img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.stackIcon {
+  position: absolute; 
+  top: 10px; 
+  right: 10px; 
+  background-color: rgba(255, 255, 255, 0.5); 
+  padding: 5px; 
+  border-radius: 50%; 
+  color: black; 
+}
