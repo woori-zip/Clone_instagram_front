@@ -30,15 +30,14 @@
   font-size: 12px;
 }
 
-.follow {
+.switch_button {
   color: #0095f6;
   font-weight: bold;
   background: 0;
   border: 0;
 }
 
-.follow:hover {
+.switch_button:hover {
   color: #1d3c78;
   cursor: pointer;
 }
-

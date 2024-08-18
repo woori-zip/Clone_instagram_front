@@ -1,23 +1,27 @@
 import React, { useEffect, useState } from "react";
 import styles from "../styles/suggestion.module.css";
-import users from "../users";
 import Profile from "./profile";
-import { getUserInfo } from "../service/ApiService"; // 사용자 정보를 가져오는 함수 임포트
+import LoggedInProfile from "./loginProfile"; // 새로운 컴포넌트 import
+import { getUserInfo, getSuggestedUsers } from "../service/ApiService";
 
 function Suggestions() {
   const [loggedInUser, setLoggedInUser] = useState(null);
+  const [suggestedUsers, setSuggestedUsers] = useState([]);
 
   useEffect(() => {
-    const fetchUserInfo = async () => {
+    const fetchUserInfoAndSuggestions = async () => {
       try {
         const userInfo = await getUserInfo();
         setLoggedInUser(userInfo);
+
+        const users = await getSuggestedUsers();
+        setSuggestedUsers(users); // 서버에서 받은 데이터 그대로 사용
       } catch (error) {
-        console.error("Failed to fetch user info:", error);
+        console.error("Failed to fetch user info or suggested users:", error);
       }
     };
 
-    fetchUserInfo();
+    fetchUserInfoAndSuggestions();
   }, []);
 
   if (!loggedInUser) {
@@ -26,11 +30,11 @@ function Suggestions() {
 
   return (
     <div className={styles.suggestions}>
-      <Profile
+      {/* 로그인 중인 사용자의 프로필 컴포넌트 사용 */}
+      <LoggedInProfile
         userId={loggedInUser.userId}
         name={loggedInUser.name}
         profile={loggedInUser.profileImg}
-        isLoggedInUser={true}
       />
       <div className={styles.text_container}>
         <span
@@ -40,8 +44,14 @@ function Suggestions() {
         </span>
         <span className={`${styles.textBold} ${styles.text12}`}>모두 보기</span>
       </div>
-      {users.map((user) => (
-        <Profile key={user.id} name={user.name} profile={user.profile} />
+      {suggestedUsers.map((user) => (
+        <Profile
+          key={user.id}
+          userId={user.userId}
+          name={user.name}
+          profile={user.profileImg}
+          isFollowing={user.isFollowing} // 팔로잉 상태 전달
+        />
       ))}
     </div>
   );
