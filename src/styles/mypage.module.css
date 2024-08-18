@@ -101,7 +101,7 @@
 }
 
 @media (max-width: 768px) {
-
+  
   .ProfileContainer {
     grid-template-columns: 120px 1fr;
   } 
@@ -171,10 +171,22 @@
   width: 100%;
   aspect-ratio: 1/1;
   overflow: hidden;
+  position: relative;
 }
 
 .post img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+
+.stackIcon {
+  position: absolute; 
+  top: 10px; 
+  right: 10px; 
+  background-color: rgba(255, 255, 255, 0.5); 
+  padding: 5px; 
+  border-radius: 50%; 
+  color: black; 
 }

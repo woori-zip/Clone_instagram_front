@@ -7,6 +7,7 @@ import SettingsSuggestOutlinedIcon from '@mui/icons-material/SettingsSuggestOutl
 import GridOnIcon from '@mui/icons-material/GridOn';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import MapsUgcOutlinedIcon from '@mui/icons-material/MapsUgcOutlined';
+import FilterNoneIcon from '@mui/icons-material/FilterNone';
 
 const MyPage = () => {
   const { userId } = useParams(); // URL에서 userId를 가져옴
@@ -24,7 +25,7 @@ const MyPage = () => {
     const fetchLoggedInUser = async () => {
       try {
         const loggedInUserInfo = await getUserInfo();
-        console.log('로그인 정보', loggedInUser)
+        console.log('로그인 정보', loggedInUserInfo)
         setLoggedInUser(loggedInUserInfo);
       } catch (error) {
         console.error("Failed to fetch logged-in user data", error);
@@ -38,12 +39,12 @@ const MyPage = () => {
     const fetchUserData = async () => {
       try {
         const userInfo = await getUserInfoById(userId);
-        console.log('조회중인프로필:',userInfo);
+        console.log('조회중인프로필:', userInfo);
         setUser(userInfo);
 
         // 사용자가 게시한 게시물 가져오기
         const userPosts = await getUserPosts(userInfo.id);
-        console.log('posts:',userPosts);
+        console.log('posts:', userPosts);
         setPosts(userPosts);
       } catch (error) {
         console.error("특정 사용자 정보 또는 게시물 가져오기 실패:", error);
@@ -148,6 +149,11 @@ const MyPage = () => {
                 <div key={post.postId} className={styles.post}>
                   <img src={`http://localhost:8080${post.images[0].url}`} 
                         alt={post.images[0].alt} />
+                  {post.hasMultipleImages === true ?
+                    <div className={styles.stackIcon}>
+                      <FilterNoneIcon/>
+                    </div>
+                  : null}
                 </div>
               ))}
             </div>
