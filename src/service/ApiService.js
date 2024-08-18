@@ -203,7 +203,7 @@ export const isLoggedIn = () => {
   return !!token;
 };
 
-// 사용자 정보 가져오기 함수
+// 로그인한 사용자 정보 가져오기 함수
 export const getUserInfo = async () => {
   try {
     const response = await axiosInstance.get("/api/users/profile");
@@ -222,5 +222,23 @@ export const getSuggestedUsers = async () => {
   } catch (error) {
     console.error("추천 사용자 가져오기 실패:", error);
     throw error; // 오류 발생 시, 예외를 던져서 호출 측에서 처리할 수 있도록 합니다.
+  }
+};
+
+// 특정 사용자의 정보 가져오기 함수
+export const getUserInfoById = async (userId) => {
+  try {
+    return await call(`/api/users/profile/${userId}`, "GET", null); // 특정 사용자의 정보
+  } catch (error) {
+    console.error("특정 사용자 정보 가져오기 실패:", error);
+  }
+};
+
+
+export const getUserPosts = async (id) => {
+  try {
+    return await call(`/api/posts/user/${id}`, "GET", null);
+  } catch (error) {
+    console.error("사용자 게시물 가져오기 실패:", error);
   }
 };

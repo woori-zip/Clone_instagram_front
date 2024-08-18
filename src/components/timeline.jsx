@@ -4,6 +4,7 @@ import Post from "../components/post";
 import Suggestions from "./suggestion";
 import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
+import '../styles/common.css'
 
 function Timeline() {
   const [posts] = useState([
