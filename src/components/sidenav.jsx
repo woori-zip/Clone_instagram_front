@@ -16,7 +16,7 @@ import Search from "../components/search";
 import UploadModal from "./Modal/uploadModal";
 import { signout } from "../service/ApiService"; // 로그아웃 함수 임포트
 
-function Sidenav() {
+function Sidenav({ handlePostUploadSuccess }) {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const isModalOpen = selectedCategory === "add";
   const isSearchActive = selectedCategory === "search";
@@ -116,7 +116,7 @@ function Sidenav() {
       </div>
 
       {selectedCategory === "search" && <Search />}
-      {selectedCategory === "add" && <UploadModal onClose={closeModal} />}
+      {selectedCategory === "add" && <UploadModal onClose={closeModal} onSuccess={handlePostUploadSuccess} />}
       {/* Add Alert component if needed */}
     </div>
   );

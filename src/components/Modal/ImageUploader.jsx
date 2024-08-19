@@ -78,11 +78,6 @@ function ImageUploader({ selectedImages, setSelectedImages, currentIndex, setCur
               <FilterNoneIcon />
             </button>
           )}
-          {showEditor && (
-            <button onClick={onSave} className={styles.haaderBlueBtn}>
-              공유하기
-            </button>
-          )}
         </>
       )}
 

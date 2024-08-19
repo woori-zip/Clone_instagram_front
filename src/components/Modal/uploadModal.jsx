@@ -7,7 +7,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import CloseIcon from '@mui/icons-material/Close';
 import axios from 'axios';
 
-function UploadModal({ onClose }) {
+function UploadModal({ onClose, onSuccess }) {
   const [loggedInUser, setLoggedInUser] = useState(null);
   const [selectedImages, setSelectedImages] = useState([]);
   const [altTexts, setAltTexts] = useState({}); 
@@ -75,15 +75,18 @@ function UploadModal({ onClose }) {
         const response = await axios.post('/api/posts', formData);
 
         if (response.status === 200) {
-            alert("게시물이 성공적으로 업로드되었습니다!");
-            onClose(); 
+          alert("게시물이 성공적으로 업로드되었습니다!");
+          onSuccess(true); // 성공 여부를 상위 컴포넌트에 전달
+          onClose(); // 모달 닫기
         } else {
-            alert("게시물 업로드에 실패했습니다.");
+          alert("게시물 업로드에 실패했습니다.");
+          onSuccess(false);
         }
-    } catch (error) {
-        console.error("Error uploading post:", error);
+      } catch (error) {
+        console.error("게시물 업로드 중 오류가 발생했습니다.", error);
         alert("게시물 업로드 중 오류가 발생했습니다.");
-    }
+        onSuccess(false);
+      }
   };
 
 

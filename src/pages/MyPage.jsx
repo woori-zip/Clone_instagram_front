@@ -9,7 +9,7 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import MapsUgcOutlinedIcon from '@mui/icons-material/MapsUgcOutlined';
 import FilterNoneIcon from '@mui/icons-material/FilterNone';
 
-const MyPage = () => {
+const MyPage = ({ onPostUploadSuccess }) => {
   const { userId } = useParams(); // URL에서 userId를 가져옴
   const [user, setUser] = useState(null); 
   const [loggedInUser, setLoggedInUser] = useState(null); 
@@ -35,26 +35,32 @@ const MyPage = () => {
     fetchLoggedInUser();
   }, []);
 
+  const fetchUserData = async () => {
+    try {
+      const userInfo = await getUserInfoById(userId);
+      console.log('조회중인프로필:', userInfo);
+      setUser(userInfo);
+
+      // 사용자가 게시한 게시물 가져오기
+      const userPosts = await getUserPosts(userInfo.id);
+      console.log('posts:', userPosts);
+      setPosts(userPosts);
+    } catch (error) {
+      console.error("특정 사용자 정보 또는 게시물 가져오기 실패:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const userInfo = await getUserInfoById(userId);
-        console.log('조회중인프로필:', userInfo);
-        setUser(userInfo);
-
-        // 사용자가 게시한 게시물 가져오기
-        const userPosts = await getUserPosts(userInfo.id);
-        console.log('posts:', userPosts);
-        setPosts(userPosts);
-      } catch (error) {
-        console.error("특정 사용자 정보 또는 게시물 가져오기 실패:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchUserData();
   }, [userId]);
+
+  useEffect(() => {
+    if (onPostUploadSuccess) {
+      fetchUserData(); // 포스트 업로드 후 데이터 다시 불러오기
+    }
+  }, [onPostUploadSuccess]);
 
   if (loading) {
     return <div><p>Loading...</p></div>;
