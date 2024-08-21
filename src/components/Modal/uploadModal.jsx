@@ -32,7 +32,7 @@ function UploadModal({ onClose, onSuccess }) {
     setSelectedImages(prevImages => prevImages.filter(image => image.id !== id));
     setAltTexts(prevTexts => {
       const newTexts = { ...prevTexts };
-      delete newTexts[id];
+      delete newTexts[id];  
       return newTexts;
     });
   };

@@ -226,19 +226,39 @@ export const getSuggestedUsers = async () => {
 };
 
 // 특정 사용자의 정보 가져오기 함수
-export const getUserInfoById = async (userId) => {
+export const getUserInfoByUserId = async (userId) => {
   try {
-    return await call(`/api/users/profile/${userId}`, "GET", null); // 특정 사용자의 정보
+    return await call(`/api/users/profile/userId/${userId}`, "GET", null); // 특정 사용자의 정보
   } catch (error) {
     console.error("특정 사용자 정보 가져오기 실패:", error);
   }
 };
 
+// 특정 사용자의 정보 가져오기 함수
+export const getUserInfoById = async (id) => {
+  try {
+    return await call(`/api/users/profile/id/${id}`, "GET" , null);
+  } catch (error) {
+    console.error("특정 사용자 정보 가져오기 실패:", error);
+  }
+};
 
+// 특정 사용자의 게시물 정보 가져오기 함수
 export const getUserPosts = async (id) => {
   try {
     return await call(`/api/posts/user/${id}`, "GET", null);
   } catch (error) {
     console.error("사용자 게시물 가져오기 실패:", error);
+  }
+};
+
+// 특정 게시물id의 게시물 정보 가져오기 함수
+export const getPostById = async (postId) => {
+  try {
+    const response = await axios.get(`/api/posts/${postId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching post by ID:', error);
+    throw error;
   }
 };

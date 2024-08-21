@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import '../styles/common.css';
 import styles from '../styles/mypage.module.css';
-import { getUserInfo, getUserInfoById, getUserPosts } from '../service/ApiService';  // API 요청 함수 가져오기
+import { getUserInfo, getUserInfoByUserId, getUserPosts, getPostById } from '../service/ApiService';  // API 요청 함수 가져오기
 import SettingsSuggestOutlinedIcon from '@mui/icons-material/SettingsSuggestOutlined';
 import GridOnIcon from '@mui/icons-material/GridOn';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import MapsUgcOutlinedIcon from '@mui/icons-material/MapsUgcOutlined';
 import FilterNoneIcon from '@mui/icons-material/FilterNone';
+import PostModal from "../components/PostModal/postModal";
 
 const MyPage = ({ onPostUploadSuccess }) => {
   const { userId } = useParams(); // URL에서 userId를 가져옴
@@ -16,9 +17,19 @@ const MyPage = ({ onPostUploadSuccess }) => {
   const [loading, setLoading] = useState(true);
   const [selectedTab, setSelectedTab] = useState('posts'); // 기본 post
   const [posts, setPosts] = useState([]); // 사용자의 게시물 목록
+  const [postModal, setPostModal] = useState(null); // 모달 상태 추가
 
   const handleTabClick = (tab) => {
     setSelectedTab(tab);
+  };
+
+  const handlePostClick = async (postId) => {
+    const post = await getPostById(postId);
+    setPostModal(post);  // postId를 postModal에 넘김
+  };
+
+  const handleCloseModal = () => {
+    setPostModal(null);  // 모달 닫기
   };
 
   useEffect(() => {
@@ -37,13 +48,11 @@ const MyPage = ({ onPostUploadSuccess }) => {
 
   const fetchUserData = async () => {
     try {
-      const userInfo = await getUserInfoById(userId);
-      console.log('조회중인프로필:', userInfo);
+      const userInfo = await getUserInfoByUserId(userId);
       setUser(userInfo);
 
       // 사용자가 게시한 게시물 가져오기
       const userPosts = await getUserPosts(userInfo.id);
-      console.log('posts:', userPosts);
       setPosts(userPosts);
     } catch (error) {
       console.error("특정 사용자 정보 또는 게시물 가져오기 실패:", error);
@@ -152,7 +161,7 @@ const MyPage = ({ onPostUploadSuccess }) => {
           {selectedTab === 'posts' && posts.length > 0 && (
             <div className={styles.postsContainer}>
               {posts.slice().reverse().map(post => ( // posts 배열을 복사하여 역순으로 매핑(최신순)
-                <div key={post.postId} className={styles.post}>
+                <div key={post.postId} className={styles.post} onClick={() => handlePostClick(post.postId)}>
                   <img src={`http://localhost:8080${post.images[0].url}`} 
                         alt={post.images[0].alt} />
                   {post.hasMultipleImages === true ?
@@ -164,6 +173,9 @@ const MyPage = ({ onPostUploadSuccess }) => {
               ))}
             </div>
           )}
+
+        {/* PostModal 컴포넌트 */}
+        <PostModal postModal={postModal} loggedInUser={loggedInUser} handleCloseModal={handleCloseModal} />
 
       </div>
     </div>

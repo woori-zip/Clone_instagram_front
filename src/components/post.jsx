@@ -2,10 +2,7 @@ import React from "react";
 import styles from "../styles/post.module.css";
 import { Avatar } from "@mui/material";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
-import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
-import TelegramIcon from "@mui/icons-material/Telegram";
-import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import PostActions from "./postActions";
 
 function Post(props) {
   return (
@@ -26,16 +23,7 @@ function Post(props) {
       </div>
 
       {/* items */}
-      <div className={styles.icons_container}>
-        <div>
-          <FavoriteBorder className={styles.icon} />
-          <ChatBubbleOutlineIcon className={styles.icon} />
-          <TelegramIcon className={styles.icon} />
-        </div>
-        <div>
-          <BookmarkBorderIcon className={styles.icon} />
-        </div>
-      </div>
+      <PostActions />
       <span className={styles.post_likes}>좋아요 {props.likes}개</span>
 
       {/* line */}

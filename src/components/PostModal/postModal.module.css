@@ -1,0 +1,156 @@
+.modalBackground {
+  z-index: 10000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalBox {
+  background-color: white;
+  /* width: 80%; */
+  height: 50%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+}
+
+.sectionImg {
+  grid-column: 1;
+  height: 100%;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  position: relative;
+}
+
+.sectionImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.Btn {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Btn svg {
+  width: 100%;
+  height: 100%;
+}
+
+.prevBtn {
+  top: 50%;
+  left: 10px;
+}
+
+.nextBtn {
+  top: 50%;
+  right: 10px;
+}
+
+.sectionContent {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+.sectionProfile {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.profileImg {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+.profileImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sectionComment {
+  margin-bottom: 16px;
+}
+
+.sectionButtons {
+  margin-bottom: 16px;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+}
+
+.sectionButtons div {
+  display: flex;
+  gap: 6px;
+}
+
+.sectionButtons svg {
+  font-size: 30px;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.sectionLikes p {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.sectionDate p {
+  margin-bottom: 16px;
+  font-size: 12px;
+  font-weight: lighter;
+}
+
+.addComment {
+  padding: 6px 16px 6px 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.addComment input {
+  width: 100%;
+  border-radius: 4px;
+  border: none;
+  height: 40px;
+}
+
+.addComment button {
+  background: transparent;
+  border: none;
+  white-space: nowrap;
+  margin: 0 0 0 8px;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 10px;
+  right: 30px;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  color: white;
+  background: transparent;
+  border: none;
+}
