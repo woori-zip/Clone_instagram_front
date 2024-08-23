@@ -12,6 +12,7 @@ const PostModal = ({ postModal, handleCloseModal }) => {
   const [user, setUser] = useState(null); // 사용자 정보 상태 관리
   const [loggedInUser, setLoggedInUser] = useState(null); 
   const [isLiked, setIsLiked] = useState(null); // 초기값을 null로 설정
+  const [isSaved, setIsSaved] = useState(null); // 초기값을 null로 설정
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -56,6 +57,23 @@ const PostModal = ({ postModal, handleCloseModal }) => {
     };
 
     fetchLikeStatus();
+  }, [loggedInUser, postModal]);
+
+  useEffect(() => {
+    const fetchSaveStatus = async () => {
+      if (loggedInUser && postModal) {
+        try {
+          const response = await axios.get('/api/bookmark/status', {
+            params: { userId: loggedInUser.id, postId: postModal.postId }
+          });
+          setIsSaved(response.data); // 북마크 상태 설정
+        } catch (error) {
+          console.error('Error fetching save status:', error);
+        }
+      }
+    };
+
+    fetchSaveStatus();
   }, [loggedInUser, postModal]);
 
   if (!postModal) return null;
@@ -121,7 +139,7 @@ const PostModal = ({ postModal, handleCloseModal }) => {
           </section>
           {/* PostActions 컴포넌트에 상태와 핸들러 전달 */}
           {loggedInUser && (
-            <PostActions postId={postModal.postId} userId={loggedInUser.id} isLiked={isLiked} setIsLiked={setIsLiked} />
+            <PostActions postId={postModal.postId} userId={loggedInUser.id} isLiked={isLiked} isSaved={isSaved} setIsLiked={setIsLiked} setIsSaved={setIsSaved}/>
           )}
           <section className={styles.sectionLikes}>
             <p>좋아요 n 개</p>
