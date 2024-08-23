@@ -12,13 +12,26 @@ function PostActions({ postId, userId, isLiked, setIsLiked }) {
   const handlePostLike = async () => {
     try {
       const response = await axios.post('/api/postlike', {
-        userId: userId,  // DTO의 일부
-        postId: postId,  // DTO의 일부
+        userId: userId, 
+        postId: postId
       });
-      console.log(response.data); // 성공 메시지 출력
-      setIsLiked(true); // 좋아요 상태를 즉시 반전시킴
+      console.log(response.data);
+      setIsLiked(true);
     } catch (error) {
       console.error('Error liking the post:', error);
+    }
+  };
+
+  const handleoCancelLike = async () => {
+    try {
+      const response = await axios.post('/api/postlike/cancel', {
+        userId: userId,
+        postId: postId
+      });
+      console.log(response.data);
+      setIsLiked(false); // 좋아요 상태를 false로 설정
+    } catch (error) {
+      console.error('Error unliking the post:', error);
     }
   };
 
@@ -26,7 +39,7 @@ function PostActions({ postId, userId, isLiked, setIsLiked }) {
     <div className={styles.icons_container}>
       <div>
         {isLiked ? (
-          <FavoriteIcon className={styles.icon} />
+          <FavoriteIcon className={styles.icon} onClick={handleoCancelLike}/>
         ) : (
           <FavoriteBorder className={styles.icon} onClick={handlePostLike} />
         )}
