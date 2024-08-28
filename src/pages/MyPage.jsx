@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import '../styles/common.css';
 import styles from '../styles/mypage.module.css';
-import { getUserInfo, getUserInfoByUserId, getUserPosts, getPostById } from '../service/ApiService';  // API 요청 함수 가져오기
+import { getUserInfo, getUserInfoByUserId, getUserPosts, getPostById, getSavedPostByUserId } from '../service/ApiService';  // API 요청 함수 가져오기
 import SettingsSuggestOutlinedIcon from '@mui/icons-material/SettingsSuggestOutlined';
 import GridOnIcon from '@mui/icons-material/GridOn';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import MapsUgcOutlinedIcon from '@mui/icons-material/MapsUgcOutlined';
 import FilterNoneIcon from '@mui/icons-material/FilterNone';
 import PostModal from "../components/PostModal/postModal";
+import FollowButton from "../components/followButton";
 
 const MyPage = ({ onPostUploadSuccess }) => {
   const { userId } = useParams(); // URL에서 userId를 가져옴
@@ -17,6 +18,7 @@ const MyPage = ({ onPostUploadSuccess }) => {
   const [loading, setLoading] = useState(true);
   const [selectedTab, setSelectedTab] = useState('posts'); // 기본 post
   const [posts, setPosts] = useState([]); // 사용자의 게시물 목록
+  const [savedPosts, setSavedPosts] = useState([]); // 사용자가 저장한 게시물 목록
   const [postModal, setPostModal] = useState(null); // 모달 상태 추가
 
   const handleTabClick = (tab) => {
@@ -54,6 +56,11 @@ const MyPage = ({ onPostUploadSuccess }) => {
       // 사용자가 게시한 게시물 가져오기
       const userPosts = await getUserPosts(userInfo.id);
       setPosts(userPosts);
+
+      // 사용자가 저장한 게시물 가져오기
+      const savedPosts = await getSavedPostByUserId(userInfo.id);
+      console.log("저장한 게시물: ", savedPosts)
+      setSavedPosts(savedPosts);
     } catch (error) {
       console.error("특정 사용자 정보 또는 게시물 가져오기 실패:", error);
     } finally {
@@ -106,7 +113,7 @@ const MyPage = ({ onPostUploadSuccess }) => {
                 </div>
               :
                 <div className={styles.buttonContainer}>
-                  <div><a>팔로우</a></div>
+                  <div><FollowButton userId={user.userId}/></div>
                   <div><a>메시지 보내기</a></div>
                 </div>
               }
@@ -158,24 +165,42 @@ const MyPage = ({ onPostUploadSuccess }) => {
 
         {/* 피드 */}
 
-          {selectedTab === 'posts' && posts.length > 0 && (
-            <div className={styles.postsContainer}>
-              {posts.slice().reverse().map(post => ( // posts 배열을 복사하여 역순으로 매핑(최신순)
-                <div key={post.postId} className={styles.post} onClick={() => handlePostClick(post.postId)}>
-                  <img src={`http://localhost:8080${post.images[0].url}`} 
-                        alt={post.images[0].alt} />
-                  {post.hasMultipleImages === true ?
-                    <div className={styles.stackIcon}>
-                      <FilterNoneIcon/>
-                    </div>
-                  : null}
-                </div>
-              ))}
-            </div>
-          )}
+        {selectedTab === 'posts' && posts.length > 0 && (
+          <div className={styles.postsContainer}>
+            {posts.slice().reverse().map(post => ( // posts 배열을 복사하여 역순으로 매핑(최신순)
+              <div key={post.postId} className={styles.post} onClick={() => handlePostClick(post.postId)}>
+                <img src={`http://localhost:8080${post.images[0].url}`} 
+                      alt={post.images[0].alt} />
+                {post.hasMultipleImages === true ?
+                  <div className={styles.stackIcon}>
+                    <FilterNoneIcon/>
+                  </div>
+                : null}
+              </div>
+            ))}
+          </div>
+        )}
 
         {/* PostModal 컴포넌트 */}
         <PostModal postModal={postModal} loggedInUser={loggedInUser} handleCloseModal={handleCloseModal} />
+
+        {/* 저장됨 */}
+
+        {selectedTab === 'saved' && savedPosts.length >0 && (
+          <div className={styles.postsContainer}>
+            {savedPosts.slice().reverse().map(post => ( // posts 배열을 복사하여 역순으로 매핑(최신순)
+              <div key={post.postId} className={styles.post} onClick={() => handlePostClick(post.postId)}>
+                <img src={`http://localhost:8080${post.images[0].url}`} 
+                      alt={post.images[0].alt} />
+                {post.hasMultipleImages === true ?
+                  <div className={styles.stackIcon}>
+                    <FilterNoneIcon/>
+                  </div>
+                : null}
+              </div>
+            ))}
+          </div>
+        )}
 
       </div>
     </div>

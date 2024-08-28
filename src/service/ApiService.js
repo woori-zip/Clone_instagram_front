@@ -262,3 +262,14 @@ export const getPostById = async (postId) => {
     throw error;
   }
 };
+
+// 사용자가 저장한 게시물 목록 불러오기 함수
+export const getSavedPostByUserId = async (id) => {
+  try {
+    const response = await axios.get(`/api/posts/saved/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching savedPost by userID:', error);
+    throw error;
+  }
+};
